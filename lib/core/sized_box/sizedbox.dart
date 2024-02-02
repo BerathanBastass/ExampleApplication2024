@@ -8,3 +8,7 @@ extension SizedBoxExtension on num {
         width: toDouble(),
       );
 }
+
+Widget customSizedBox() => SizedBox(
+      height: 30,
+    );
