@@ -12,3 +12,7 @@ extension SizedBoxExtension on num {
 Widget customSizedBox() => SizedBox(
       height: 30,
     );
+
+Widget sbxw() => SizedBox(
+      width: 30,
+    );

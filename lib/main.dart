@@ -1,5 +1,7 @@
-import 'package:examplaapplication2024/feature/auth/login_screen.dart';
+import 'package:examplaapplication2024/feature/auth/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'feature/auth/sign_up.dart';
+import 'feature/auth/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,13 +9,21 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowMaterialGrid: false,
-      home: LoginScreen(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      routes: {
+        "/loginPage": (context) => LoginScreen(),
+        "/homePage": (context) => HomePage(),
+      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const Scaffold(
+        body: LoginScreen(),
+      ),
     );
   }
 }

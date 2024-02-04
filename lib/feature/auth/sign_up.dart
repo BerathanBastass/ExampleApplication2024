@@ -1,15 +1,25 @@
+import 'package:examplaapplication2024/feature/auth/model/user_model.dart';
+import 'package:examplaapplication2024/feature/auth/service/login_service.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
-
+class HomePage extends StatefulWidget {
   @override
-  State<SignUp> createState() => _SignUpState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
   }
 }

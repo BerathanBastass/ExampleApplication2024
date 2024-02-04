@@ -1,5 +1,9 @@
+import 'package:examplaapplication2024/core/interfaces/login_interface.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
+import 'package:examplaapplication2024/feature/auth/model/user_model.dart';
+import 'package:examplaapplication2024/feature/auth/service/login_service.dart';
 import 'package:examplaapplication2024/feature/auth/sign_up.dart';
+
 import 'package:flutter/material.dart';
 import '../../core/images/images.dart';
 import 'package:sign_button/sign_button.dart';
@@ -14,7 +18,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  late String email, password;
+  final ILogin _loginService = LoginService();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   final formkey = GlobalKey<FormState>();
   bool _obscureText = true;
 
@@ -106,6 +113,7 @@ class _LoginScreen extends State<LoginScreen> {
 
   TextFormField emailTextField() {
     return TextFormField(
+      controller: _emailController,
       decoration: const InputDecoration(
         labelText: "E-mail Address",
         labelStyle: TextStyle(color: Colors.orange),
@@ -114,11 +122,16 @@ class _LoginScreen extends State<LoginScreen> {
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
+      onEditingComplete: () async {
+        UserModel? response = await _loginService.login(
+            _emailController.text, _passwordController.text);
+      },
     );
   }
 
   TextFormField passwordTextField() {
     return TextFormField(
+      controller: _passwordController,
       obscureText: true,
       decoration: const InputDecoration(
         labelText: "Enter Password",
@@ -174,7 +187,28 @@ class _LoginScreen extends State<LoginScreen> {
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
-        onPressed: () {},
+        onPressed: () async {
+          if (_emailController.text.isNotEmpty &&
+              _passwordController.text.isNotEmpty) {
+            UserModel? user = await _loginService.login(
+                _emailController.text, _passwordController.text);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => HomePage(),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: Duration(seconds: 3),
+                  content: Text('email or password incorrect'),
+                ),
+              );
+              return null;
+            }
+          }
+        },
         child: Text(
           'Login',
           style: TextStyle(color: Colors.white),
