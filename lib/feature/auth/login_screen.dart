@@ -2,7 +2,8 @@ import 'package:examplaapplication2024/core/interfaces/login_interface.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/auth/model/user_model.dart';
 import 'package:examplaapplication2024/feature/auth/service/login_service.dart';
-import 'package:examplaapplication2024/feature/auth/sign_up.dart';
+import 'package:examplaapplication2024/feature/bottombar.dart';
+import 'package:examplaapplication2024/feature/homepage/homepage.dart';
 
 import 'package:flutter/material.dart';
 import '../../core/images/images.dart';
@@ -17,18 +18,23 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreen();
 }
 
-class _LoginScreen extends State<LoginScreen> {
+class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
   final ILogin _loginService = LoginService();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
   final formkey = GlobalKey<FormState>();
-  bool _obscureText = true;
+  late TabController _controller;
 
-  void _toggleObscureText() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
+  @override
+  void initState() {
+    _controller = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -82,15 +88,15 @@ class _LoginScreen extends State<LoginScreen> {
   }
 
   DefaultTabController tabBar() {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 2,
-      initialIndex: 0,
-      child: Column(
-        children: [
+      child: Container(
+        child: Column(children: [
           TabBar(
             indicatorColor: Colors.orange,
             labelStyle: TextStyle(color: Colors.orange),
             unselectedLabelColor: Colors.grey,
+            controller: _controller,
             tabs: [
               Tab(
                 child: Text(
@@ -106,7 +112,7 @@ class _LoginScreen extends State<LoginScreen> {
               ),
             ],
           ),
-        ],
+        ]),
       ),
     );
   }
@@ -195,7 +201,7 @@ class _LoginScreen extends State<LoginScreen> {
             if (user != null) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => HomePage(),
+                  builder: (_) => BottomBar(),
                 ),
               );
             } else {
@@ -268,7 +274,7 @@ class _LoginScreen extends State<LoginScreen> {
   }
 
   InputDecoration customInputDecoration() {
-    return InputDecoration(
+    return const InputDecoration(
       hintStyle: TextStyle(color: Colors.grey),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(),
