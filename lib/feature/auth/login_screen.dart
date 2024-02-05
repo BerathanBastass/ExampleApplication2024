@@ -3,7 +3,6 @@ import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/auth/model/user_model.dart';
 import 'package:examplaapplication2024/feature/auth/service/login_service.dart';
 import 'package:examplaapplication2024/feature/bottombar.dart';
-import 'package:examplaapplication2024/feature/homepage/homepage.dart';
 
 import 'package:flutter/material.dart';
 import '../../core/images/images.dart';

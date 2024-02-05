@@ -16,15 +16,15 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedTab = 0;
   final List _pages = [
     const MaterialApp(
+      home: Profile(),
+      debugShowCheckedModeBanner: false,
+    ),
+    const MaterialApp(
       home: HomePage(),
       debugShowCheckedModeBanner: false,
     ),
     const MaterialApp(
       home: Favorites(),
-      debugShowCheckedModeBanner: false,
-    ),
-    const MaterialApp(
-      home: Profile(),
       debugShowCheckedModeBanner: false,
     )
   ];
