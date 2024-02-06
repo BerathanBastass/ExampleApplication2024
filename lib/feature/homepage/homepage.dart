@@ -2,6 +2,7 @@ import 'package:examplaapplication2024/core/function/local/appbar.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +18,14 @@ class _HomePageState extends State<HomePage> {
       length: 4,
       child: Scaffold(
         appBar: AppBarWithTabBar(
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  FontAwesomeIcons.bagShopping,
+                  size: 30,
+                ))
+          ],
           title: "Products",
           tabBar: const [
             Tab(text: 'Mixed'),

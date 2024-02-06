@@ -15,8 +15,8 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _selectedTab = 0;
   final List _pages = [
-    const MaterialApp(
-      home: Profile(),
+    MaterialApp(
+      home: Profil(),
       debugShowCheckedModeBanner: false,
     ),
     const MaterialApp(

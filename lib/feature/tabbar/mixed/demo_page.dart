@@ -31,15 +31,7 @@ class ProductItem extends StatelessWidget {
           Flexible(
             child: Text(
               '\$${product.price}',
-              style:
-                  const TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
-            ),
-          ),
-          Container(
-            width: 200,
-            child: const Text(
-              'Click to buy',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
         ],

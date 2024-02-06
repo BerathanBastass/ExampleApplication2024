@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_detal.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,6 +15,7 @@ class MixedScreen extends StatefulWidget {
 class _MixedScreenstate extends State<MixedScreen> {
   final Dio _dio = Dio();
   List<Products> products = [];
+  late Products product;
 
   @override
   void initState() {
@@ -44,11 +45,8 @@ class _MixedScreenstate extends State<MixedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.pageColor,
-      body: InkWell(
-        onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => MixedDetailScreen()));
-        },
+      body: GestureDetector(
+        onTap: () async {},
         child: GridView.builder(
           padding: EdgeInsets.all(10.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -1,17 +1,21 @@
-import '../model/mixed_models.dart';
+import 'package:examplaapplication2024/core/function/local/appbar.dart';
+
+import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:flutter/material.dart';
 
-class MixedDetailScreen extends StatefulWidget {
-  const MixedDetailScreen({super.key});
+class MixedScreenDetail extends StatefulWidget {
+  MixedScreenDetail({super.key, required this.products});
+  final Products products;
 
   @override
-  State<MixedDetailScreen> createState() => _MixedDetailScreenState();
+  State<MixedScreenDetail> createState() => _MixedScreenDetailState();
 }
 
-class _MixedDetailScreenState extends State<MixedDetailScreen> {
-  late Products products;
+class _MixedScreenDetailState extends State<MixedScreenDetail> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBarScreen(title: ""),
+    );
   }
 }
