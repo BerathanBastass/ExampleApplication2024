@@ -13,28 +13,31 @@ class ProductItem extends StatelessWidget {
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            product.image,
-            height: 40,
-            width: 500,
-            alignment: Alignment.center,
-          ),
-          Flexible(
-            child: Text(
-              product.title,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+      child: Align(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(
+              product.image,
+              height: 40,
+              width: 500,
+              alignment: Alignment.center,
             ),
-          ),
-          Flexible(
-            child: Text(
-              '\$${product.price}',
-              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            Flexible(
+              child: Text(
+                product.title,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+              ),
             ),
-          ),
-        ],
+            Flexible(
+              child: Text(
+                '\$${product.price}',
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -5,4 +5,5 @@ class CustomColors {
   static const textButtonColor = Color(0xFFF48FB1);
   static const loginButtonTextColor = Color(0xffffffff);
   static const pageColor = Color(0xFFFFF8E1);
+  static const goldColor = Color(0xFFD700);
 }

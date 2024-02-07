@@ -1,3 +1,4 @@
+import 'package:examplaapplication2024/core/function/local/appbar.dart';
 import 'package:flutter/material.dart';
 
 class Profil extends StatefulWidget {
@@ -10,6 +11,10 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBarScreen(title: "1"),
+      ),
+    );
   }
 }

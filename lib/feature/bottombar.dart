@@ -14,20 +14,12 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedTab = 0;
-  final List _pages = [
-    MaterialApp(
-      home: Profil(),
-      debugShowCheckedModeBanner: false,
-    ),
-    const MaterialApp(
-      home: HomePage(),
-      debugShowCheckedModeBanner: false,
-    ),
-    const MaterialApp(
-      home: Favorites(),
-      debugShowCheckedModeBanner: false,
-    )
+  final _pages = [
+    const Profil(),
+    const HomePage(),
+    const Favorites(),
   ];
+
   _changeTab(int index) {
     setState(() {
       _selectedTab = index;
@@ -46,14 +38,19 @@ class _BottomBarState extends State<BottomBar> {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.user), label: "Profile"),
+            icon: Icon(FontAwesomeIcons.user),
+            label: "Profile",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.houseUser,
-              ),
-              label: "Home"),
+            icon: Icon(
+              FontAwesomeIcons.houseUser,
+            ),
+            label: "Home",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.heart), label: "Favorites"),
+            icon: Icon(FontAwesomeIcons.heart),
+            label: "Favorites",
+          ),
         ],
       ),
     );

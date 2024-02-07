@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 
-import 'package:examplaapplication2024/core/utils/customcolors.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_detal.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/customcolors.dart';
 import '../demo_page.dart';
 import '../model/mixed_models.dart';
 
@@ -15,7 +18,6 @@ class MixedScreen extends StatefulWidget {
 class _MixedScreenstate extends State<MixedScreen> {
   final Dio _dio = Dio();
   List<Products> products = [];
-  late Products product;
 
   @override
   void initState() {
@@ -29,9 +31,11 @@ class _MixedScreenstate extends State<MixedScreen> {
 
       if (response.statusCode == 200) {
         final List<dynamic> responseData = response.data;
-        setState(() {
-          products =
-              responseData.map((item) => Products.fromJson(item)).toList();
+        Timer(Duration(seconds: 1), () {
+          setState(() {
+            products =
+                responseData.map((item) => Products.fromJson(item)).toList();
+          });
         });
       } else {
         print('Request failed with status code: ${response.statusCode}');
@@ -45,9 +49,7 @@ class _MixedScreenstate extends State<MixedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.pageColor,
-      body: GestureDetector(
-        onTap: () async {},
-        child: GridView.builder(
+      body: GridView.builder(
           padding: EdgeInsets.all(10.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -56,10 +58,17 @@ class _MixedScreenstate extends State<MixedScreen> {
           ),
           itemCount: products.length,
           itemBuilder: (context, index) {
-            return ProductItem(product: products[index]);
-          },
-        ),
-      ),
+            return InkWell(
+                child: ProductItem(product: products[index]),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MixedDetailPage(product: products[index])),
+                  );
+                });
+          }),
     );
   }
 }
