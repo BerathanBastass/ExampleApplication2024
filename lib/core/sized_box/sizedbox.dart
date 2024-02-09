@@ -9,7 +9,7 @@ extension SizedBoxExtension on num {
       );
 }
 
-Widget customSizedBox() => SizedBox(
+Widget sbxh() => SizedBox(
       height: 30,
     );
 

@@ -2,6 +2,7 @@ import 'package:examplaapplication2024/feature/bottombar.dart';
 import 'package:examplaapplication2024/feature/favorites/favorites.dart';
 import 'package:examplaapplication2024/feature/homepage/homepage.dart';
 import 'package:examplaapplication2024/feature/profile/profile.dart';
+import 'package:examplaapplication2024/feature/settings/settings.dart';
 
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         "/favorites": (context) => Favorites(),
         "/profile": (context) => Profil(),
         "/midexScreen": (context) => MixedScreen(),
+        "/settingsScreen": (context) => Settings(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

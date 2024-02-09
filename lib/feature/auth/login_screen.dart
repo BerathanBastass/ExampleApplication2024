@@ -64,16 +64,16 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     tabBar(),
-                    customSizedBox(),
+                    sbxh(),
                     emailTextField(),
-                    customSizedBox(),
+                    sbxh(),
                     passwordTextField(),
                     signUpButton(),
                     rememberMe(),
                     loginButton(),
-                    customSizedBox(),
+                    sbxh(),
                     orText(),
-                    customSizedBox(),
+                    sbxh(),
                     signUsingText(),
                     socialMediaButtons(),
                   ],
@@ -214,7 +214,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
             }
           }
         },
-        child: Text(
+        child: const Text(
           'Login',
           style: TextStyle(color: Colors.white),
         ),

@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 
 class AppBarScreen extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final List<Widget>? TabBar;
+  final List<Widget>? tabBar;
   final List<Widget>? actions;
   final List<Widget>? color;
+  final List<Widget>? Leading;
+  final Widget? icon;
 
-  AppBarScreen({required this.title, this.actions, this.color, this.TabBar});
+  AppBarScreen({
+    required this.title,
+    this.actions,
+    this.color,
+    this.tabBar,
+    this.Leading,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {

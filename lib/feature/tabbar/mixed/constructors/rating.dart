@@ -37,8 +37,8 @@ Widget _buildStarts(double rating) {
     } else {
       _list.add(
         const Icon(
-          Icons.star_half,
-          color: Colors.yellow,
+          Icons.star_border,
+          color: Colors.black,
         ),
       );
     }

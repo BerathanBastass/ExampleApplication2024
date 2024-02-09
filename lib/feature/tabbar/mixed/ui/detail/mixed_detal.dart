@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../constructors/rating.dart';
+import '../../constructors/rating.dart';
 
 class MixedDetailPage extends StatelessWidget {
   final Products product;
@@ -138,11 +138,9 @@ class newScaffold extends StatelessWidget {
                         context.read<FavoriteCubit>().getData('${product.id}');
                       },
                       icon: Icon(
-                        isFavorite
-                            ? FontAwesomeIcons.heart
-                            : FontAwesomeIcons.solidHeart,
-                        size: 30,
-                        color: isFavorite ? Colors.black : Colors.red,
+                        isFavorite ? Icons.favorite : Icons.heart_broken,
+                        size: 40,
+                        color: isFavorite ? Colors.red : Colors.grey,
                       ),
                     );
                   },

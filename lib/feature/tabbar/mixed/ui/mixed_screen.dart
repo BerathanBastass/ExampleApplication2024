@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_detal.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/ui/detail/mixed_detal.dart';
 
 import 'package:flutter/material.dart';
 
