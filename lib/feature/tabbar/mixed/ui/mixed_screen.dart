@@ -58,16 +58,18 @@ class _MixedScreenstate extends State<MixedScreen> {
           ),
           itemCount: products.length,
           itemBuilder: (context, index) {
-            return InkWell(
-                child: ProductItem(product: products[index]),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            MixedDetailPage(product: products[index])),
-                  );
-                });
+            return Container(
+              child: InkWell(
+                  child: ProductItem(product: products[index]),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              MixedDetailPage(product: products[index])),
+                    );
+                  }),
+            );
           }),
     );
   }

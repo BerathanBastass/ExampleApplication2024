@@ -1,5 +1,5 @@
+import 'package:examplaapplication2024/core/splash/splash.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
-import 'package:examplaapplication2024/feature/favorites/favorites.dart';
 import 'package:examplaapplication2024/feature/homepage/homepage.dart';
 import 'package:examplaapplication2024/feature/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class _BottomBarState extends State<BottomBar> {
   final _pages = [
     const Profil(),
     const HomePage(),
-    const Favorites(),
+    const SplashScreens(),
   ];
 
   _changeTab(int index) {

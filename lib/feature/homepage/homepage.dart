@@ -1,4 +1,3 @@
-import 'package:examplaapplication2024/core/function/local/appbar.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/favorites/favorites.dart';
 import 'package:examplaapplication2024/feature/profile/profile.dart';
@@ -35,12 +34,14 @@ class _HomePageState extends State<HomePage>
           IconButton(
             onPressed: () {},
             icon: const Icon(
-              FontAwesomeIcons.bagShopping,
-              size: 30,
+              FontAwesomeIcons.cartShopping,
+              size: 35,
             ),
           ),
         ],
         bottom: TabBar(
+          labelColor: Colors.orange,
+          indicatorColor: Colors.orange,
           controller: _tabController,
           tabs: const [
             Tab(text: 'Mixed'),
@@ -54,10 +55,9 @@ class _HomePageState extends State<HomePage>
         controller: _tabController,
         children: [
           MixedScreen(),
-          AddToCart(),
+          AddCart(),
           Favorites(),
           Profil(),
-          // Diğer sayfaları ekleyin
         ],
       ),
     );
