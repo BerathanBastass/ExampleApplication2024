@@ -3,7 +3,6 @@ import 'package:examplaapplication2024/core/splash/splash.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/model/user_model.dart';
 import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/service/login_service.dart';
-import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
 
 import 'package:flutter/material.dart';
 import '../../../../core/images/images.dart';
@@ -93,11 +92,11 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
       child: Container(
         child: Column(children: [
           TabBar(
-            indicatorColor: Colors.orange,
-            labelStyle: TextStyle(color: Colors.orange),
+            indicatorColor: CustomColors.orangeColor,
+            labelStyle: const TextStyle(color: CustomColors.orangeColor),
             unselectedLabelColor: Colors.grey,
             controller: _controller,
-            tabs: [
+            tabs: const [
               Tab(
                 child: Text(
                   'Sıgn In',
@@ -121,8 +120,11 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
     return TextFormField(
       controller: _emailController,
       decoration: const InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: CustomColors.orangeColor),
+        ),
         labelText: "E-mail Address",
-        labelStyle: TextStyle(color: Colors.orange),
+        labelStyle: TextStyle(color: CustomColors.orangeColor),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(0.0)),
         ),
@@ -140,8 +142,11 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
       controller: _passwordController,
       obscureText: true,
       decoration: const InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: CustomColors.orangeColor),
+        ),
         labelText: "Enter Password",
-        labelStyle: TextStyle(color: Colors.orange),
+        labelStyle: TextStyle(color: CustomColors.orangeColor),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(0.0)),
         ),
@@ -187,7 +192,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
     return Center(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.orange,
+          backgroundColor: CustomColors.orangeColor,
           fixedSize: Size(250, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -217,7 +222,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
         },
         child: const Text(
           'Login',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: CustomColors.saltWhite),
         ),
       ),
     );
@@ -267,7 +272,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
       alignment: Alignment.topLeft,
       child: Image.asset(
         image,
-        color: Colors.orange,
+        color: CustomColors.orangeColor,
         height: 200,
       ),
     );

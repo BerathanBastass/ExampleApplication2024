@@ -1,4 +1,4 @@
-import 'package:examplaapplication2024/core/cubit/layout_states.dart';
+import 'package:examplaapplication2024/feature/favorites/cubit/layout_states.dart';
 
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

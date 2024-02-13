@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomColors {
-  static const scaffoldBackgroundColor = Color(0xff21254A);
-  static const textButtonColor = Color(0xFFF48FB1);
-  static const loginButtonTextColor = Color(0xffffffff);
-  static const pageColor = Color(0xFFFFF8E1);
-  static const goldColor = Color(0xFFD700);
+  static const orangeColor = Color(0xFFEE682E);
+  static const pageColor = Color(0xFFF7F8FC);
+  static const Color primaryColor = Color(0xFF202546);
+  static const Color saltWhite = Color(0xFFF7F8FC);
 }

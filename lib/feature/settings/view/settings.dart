@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:examplaapplication2024/core/function/local/appbar.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
-import 'package:examplaapplication2024/feature/settings/view_model/bottomsheet.dart';
+import 'package:examplaapplication2024/core/widgets/bottomsheet.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,7 +41,16 @@ class _SettingsPageState extends State<Settings> {
               ),
             ),
             home: Scaffold(
-              appBar: AppBarScreen(title: "Settings"),
+              appBar: AppBar(
+                backgroundColor: CustomColors.pageColor,
+                title: const Text("Settings"),
+                leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(Icons.arrow_back)),
+                automaticallyImplyLeading: true,
+              ),
               backgroundColor: CustomColors.pageColor,
               body: SingleChildScrollView(
                 child: Container(

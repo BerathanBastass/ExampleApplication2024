@@ -27,7 +27,7 @@ class _ProfilState extends State<Profil> {
     String image = "assets/pinksale.png";
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: CustomColors.pageColor,
+          backgroundColor: CustomColors.saltWhite,
           title: const Text("Profile"),
           leading: IconButton(
               onPressed: () {
@@ -35,7 +35,7 @@ class _ProfilState extends State<Profil> {
                     MaterialPageRoute(builder: (context) => const Settings()));
               },
               icon: Icon(FontAwesomeIcons.gear))),
-      backgroundColor: CustomColors.pageColor,
+      backgroundColor: CustomColors.saltWhite,
       body: appBody(height, image),
     );
   }
@@ -75,7 +75,7 @@ class _ProfilState extends State<Profil> {
   CircleAvatar _CircleAvatars() {
     return const CircleAvatar(
       radius: 60,
-      backgroundColor: Colors.orange,
+      backgroundColor: CustomColors.orangeColor,
       child: Icon(FontAwesomeIcons.user),
     );
   }
@@ -84,9 +84,14 @@ class _ProfilState extends State<Profil> {
     return ListTile(
       title: TextFormField(
         style: TextStyle(fontSize: 20),
-        decoration: const InputDecoration(hintText: "My Username"),
+        decoration: const InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.orangeColor),
+          ),
+          hintText: "My Username",
+        ),
       ),
-      tileColor: Colors.orange,
+      tileColor: CustomColors.orangeColor,
       leading: const Icon(FontAwesomeIcons.user),
       contentPadding: const EdgeInsets.all(10.0),
     );
@@ -95,11 +100,11 @@ class _ProfilState extends State<Profil> {
   ListTile _DescriptionTile() {
     return ListTile(
       title: TextFormField(
-        style: TextStyle(fontSize: 20),
-        decoration: InputDecoration.collapsed(hintText: "My description"),
+        style: const TextStyle(fontSize: 20),
+        decoration: const InputDecoration.collapsed(hintText: "My description"),
         maxLength: 50,
       ),
-      tileColor: Colors.orange,
+      tileColor: CustomColors.orangeColor,
       leading: Icon(FontAwesomeIcons.penToSquare),
       contentPadding: const EdgeInsets.all(20.0),
     );
@@ -111,10 +116,10 @@ class _ProfilState extends State<Profil> {
         profilCubit.saveChanges();
       },
       style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.orange)),
+          backgroundColor: MaterialStatePropertyAll(CustomColors.orangeColor)),
       child: const Text(
         "Save Changes",
-        style: TextStyle(color: Colors.black, fontSize: 20),
+        style: TextStyle(color: CustomColors.primaryColor, fontSize: 20),
       ),
     );
   }
@@ -124,7 +129,7 @@ class _ProfilState extends State<Profil> {
       offset: Offset(-10, -30),
       child: Image.asset(
         image,
-        color: Colors.orange,
+        color: CustomColors.orangeColor,
         height: 200,
       ),
     );

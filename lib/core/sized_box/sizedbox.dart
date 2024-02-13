@@ -9,10 +9,10 @@ extension SizedBoxExtension on num {
       );
 }
 
-Widget sbxh() => SizedBox(
+Widget sbxh() => const SizedBox(
       height: 30,
     );
 
-Widget sbxw() => SizedBox(
+Widget sbxw() => const SizedBox(
       width: 30,
     );

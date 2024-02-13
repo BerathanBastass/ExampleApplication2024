@@ -34,7 +34,7 @@ class _BottomBarState extends State<BottomBar> {
         backgroundColor: CustomColors.pageColor,
         currentIndex: _selectedTab,
         onTap: (index) => _changeTab(index),
-        selectedItemColor: Colors.orange,
+        selectedItemColor: CustomColors.orangeColor,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(

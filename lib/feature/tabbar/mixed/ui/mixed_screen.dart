@@ -26,22 +26,18 @@ class _MixedScreenstate extends State<MixedScreen> {
   }
 
   Future<void> fetchProducts() async {
-    try {
+    {
       final response = await _dio.get('https://fakestoreapi.com/products');
 
       if (response.statusCode == 200) {
         final List<dynamic> responseData = response.data;
-        Timer(Duration(seconds: 1), () {
+        Timer(const Duration(seconds: 1), () {
           setState(() {
             products =
                 responseData.map((item) => Products.fromJson(item)).toList();
           });
         });
-      } else {
-        print('Request failed with status code: ${response.statusCode}');
       }
-    } catch (error) {
-      print('Error: $error');
     }
   }
 

@@ -41,8 +41,8 @@ class _HomePageState extends State<HomePage>
           ),
         ],
         bottom: TabBar(
-          labelColor: Colors.orange,
-          indicatorColor: Colors.orange,
+          labelColor: CustomColors.orangeColor,
+          indicatorColor: CustomColors.orangeColor,
           controller: _tabController,
           tabs: const [
             Tab(text: 'Mixed'),

@@ -1,6 +1,4 @@
-import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FSRating extends StatelessWidget {
   double rating = 0.0;
