@@ -1,12 +1,12 @@
-import 'package:examplaapplication2024/feature/bottombar.dart';
-import 'package:examplaapplication2024/feature/favorites/favorites.dart';
-import 'package:examplaapplication2024/feature/homepage/homepage.dart';
-import 'package:examplaapplication2024/feature/profile/profile.dart';
-import 'package:examplaapplication2024/feature/settings/settings.dart';
+import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
+import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
+import 'package:examplaapplication2024/feature/tabbarr/tabbar.dart';
+import 'package:examplaapplication2024/feature/profile/view/profile.dart';
+import 'package:examplaapplication2024/feature/settings/view/settings.dart';
 
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_screen.dart';
 import 'package:flutter/material.dart';
-import 'feature/auth/login_screen.dart';
+import 'feature/auth/sıgn_ın/view/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       routes: {
-        "/loginPage": (context) => LoginScreen(),
-        "/homePage": (context) => HomePage(),
-        "/bottomBar": (context) => BottomBar(),
-        "/favorites": (context) => Favorites(),
-        "/profile": (context) => Profil(),
+        "/loginPage": (context) => const LoginScreen(),
+        "/homePage": (context) => const HomePage(),
+        "/bottomBar": (context) => const BottomBar(),
+        "/favorites": (context) => const Favorites(),
+        "/profile": (context) => const Profil(),
         "/midexScreen": (context) => MixedScreen(),
-        "/settingsScreen": (context) => Settings(),
+        "/settingsScreen": (context) => const Settings(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

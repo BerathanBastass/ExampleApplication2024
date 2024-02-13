@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:examplaapplication2024/feature/favorites/favorites.dart';
+import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
+import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -23,7 +24,7 @@ class _HomePageState extends State<SplashScreens> {
       () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Favorites(),
+          builder: (context) => BottomBar(),
         ),
       ),
     );
