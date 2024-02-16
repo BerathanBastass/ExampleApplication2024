@@ -43,13 +43,7 @@ class _SettingsPageState extends State<Settings> {
             home: Scaffold(
               appBar: AppBar(
                 backgroundColor: CustomColors.pageColor,
-                title: const Text("Settings"),
-                leading: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(Icons.arrow_back)),
-                automaticallyImplyLeading: true,
+                toolbarHeight: 5,
               ),
               backgroundColor: CustomColors.pageColor,
               body: SingleChildScrollView(

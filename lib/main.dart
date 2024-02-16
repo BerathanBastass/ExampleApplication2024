@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Scaffold(
-        body: LoginScreen(),
+        body: BottomBar(),
       ),
     );
   }

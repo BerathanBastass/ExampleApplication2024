@@ -7,6 +7,7 @@ class AppBarScreen extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final List<Widget>? color;
   final List<Widget>? Leading;
+  final List<Widget>? titleTextStyle;
   final Widget? icon;
 
   AppBarScreen({
@@ -16,6 +17,7 @@ class AppBarScreen extends StatelessWidget implements PreferredSizeWidget {
     this.tabBar,
     this.Leading,
     this.icon,
+    this.titleTextStyle,
   });
 
   @override
@@ -24,6 +26,7 @@ class AppBarScreen extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title),
       backgroundColor: CustomColors.pageColor,
       actions: actions,
+      titleTextStyle: TextStyle(),
     );
   }
 

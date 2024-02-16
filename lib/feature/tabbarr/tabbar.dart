@@ -30,7 +30,10 @@ class _HomePageState extends State<HomePage>
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: CustomColors.pageColor,
-        title: const Text("Products"),
+        title: Text(
+          "Products",
+          style: TextStyle(fontSize: 35),
+        ),
         actions: [
           IconButton(
             onPressed: () {},

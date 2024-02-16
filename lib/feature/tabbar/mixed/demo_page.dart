@@ -1,5 +1,6 @@
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:flutter/material.dart';
+import 'package:examplaapplication2024/core/utils/customcolors.dart';
 
 class ProductItem extends StatelessWidget {
   final Products product;
@@ -10,8 +11,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.orange, width: 5),
-        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: CustomColors.saltWhite, width: 10),
       ),
       child: Align(
         child: Column(
@@ -32,8 +32,8 @@ class ProductItem extends StatelessWidget {
             Flexible(
               child: Text(
                 '\$${product.price}',
-                style:
-                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.normal),
               ),
             ),
           ],

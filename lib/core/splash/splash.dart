@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
-import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 

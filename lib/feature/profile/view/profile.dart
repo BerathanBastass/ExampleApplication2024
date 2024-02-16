@@ -1,8 +1,6 @@
 import 'package:examplaapplication2024/core/sized_box/sizedbox.dart';
-import 'package:examplaapplication2024/feature/settings/view/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../core/utils/customcolors.dart';
 import '../cubit/profile_event.dart';
 
@@ -27,15 +25,13 @@ class _ProfilState extends State<Profil> {
     String image = "assets/pinksale.png";
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: CustomColors.saltWhite,
-          title: const Text("Profile"),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Settings()));
-              },
-              icon: Icon(FontAwesomeIcons.gear))),
-      backgroundColor: CustomColors.saltWhite,
+        backgroundColor: CustomColors.pageColor,
+        title: const Text(
+          "Profile",
+          style: TextStyle(fontSize: 35),
+        ),
+      ),
+      backgroundColor: CustomColors.pageColor,
       body: appBody(height, image),
     );
   }
