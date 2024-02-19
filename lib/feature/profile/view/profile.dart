@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/utils/customcolors.dart';
 import '../cubit/profile_event.dart';
+import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Profil extends StatefulWidget {
   const Profil({Key? key}) : super(key: key);
@@ -23,15 +25,16 @@ class _ProfilState extends State<Profil> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     String image = "assets/pinksale.png";
+    final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColors.pageColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         title: const Text(
           "Profile",
           style: TextStyle(fontSize: 35),
         ),
       ),
-      backgroundColor: CustomColors.pageColor,
+      backgroundColor: _theme.scaffoldBackgroundColor,
       body: appBody(height, image),
     );
   }

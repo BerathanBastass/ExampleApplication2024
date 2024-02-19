@@ -6,7 +6,8 @@ import 'package:examplaapplication2024/feature/tabbar/mixed/ui/detail/mixed_deta
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/customcolors.dart';
+import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../demo_page.dart';
 import '../model/mixed_models.dart';
 
@@ -43,8 +44,9 @@ class _MixedScreenstate extends State<MixedScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
-      backgroundColor: CustomColors.pageColor,
+      backgroundColor: _theme.scaffoldBackgroundColor,
       body: GridView.builder(
           padding: EdgeInsets.all(10.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

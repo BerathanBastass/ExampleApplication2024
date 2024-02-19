@@ -1,8 +1,8 @@
-import 'package:examplaapplication2024/core/utils/textstyles.dart';
 import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
 import 'package:examplaapplication2024/feature/favorites/cubit/layout_states.dart';
-import 'package:examplaapplication2024/core/widgets/appbar.dart';
-import 'package:examplaapplication2024/core/utils/customcolors.dart';
+
+import 'package:examplaapplication2024/core/utils/textstyles.dart';
+import 'package:examplaapplication2024/core/utils/customColors.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/widgets/rating.dart';
+import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 
 class MixedDetailPage extends StatelessWidget {
   final Products product;
@@ -39,9 +40,14 @@ class NewScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
-      appBar: AppBarScreen(title: product.title),
-      backgroundColor: CustomColors.pageColor,
+      appBar: AppBar(
+          backgroundColor: _theme.scaffoldBackgroundColor,
+          title: Text(
+            '${product.title}',
+          )),
+      backgroundColor: _theme.scaffoldBackgroundColor,
       body: Transform.translate(
         offset: const Offset(0.0, -60.0),
         child: Column(
@@ -56,9 +62,9 @@ class NewScaffold extends StatelessWidget {
               offset: const Offset(5.0, -60.0),
               child: Text(
                 'Description \n${product.description}',
+                style: TextStyle(fontStyle: FontStyle.normal),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: AppTextStyles.titleMain20Semibold,
               ),
             ),
             Row(
@@ -69,7 +75,6 @@ class NewScaffold extends StatelessWidget {
                     '\$${product.price}',
                     style: const TextStyle(
                       fontSize: 25,
-                      color: Colors.black,
                       decorationColor: Colors.white,
                       fontWeight: FontWeight.normal,
                     ),
@@ -84,10 +89,7 @@ class NewScaffold extends StatelessWidget {
                 child: Text(
                   ' ${product.rating.count}',
                   style: const TextStyle(
-                      color: Colors.black,
-                      decorationColor: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.normal),
+                      fontSize: 30, fontWeight: FontWeight.normal),
                 ),
               ),
             ),

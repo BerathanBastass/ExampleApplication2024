@@ -15,7 +15,7 @@ class AppTextStyles {
       fontWeight: FontWeight.w600,
       fontSize: 20);
   static TextStyle titleMain20Semibold = TextStyle(
-      color: CustomColors.primaryColor,
+      color: CustomColors.pageColor,
       fontWeight: FontWeight.w600,
       fontFamily: GoogleFonts.inter().fontFamily,
       fontSize: 20);

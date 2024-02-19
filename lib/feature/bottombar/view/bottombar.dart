@@ -7,7 +7,7 @@ import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/tabbarr/tabbar.dart';
 import 'package:examplaapplication2024/feature/profile/view/profile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:examplaapplication2024/feature/users/view/users_view.dart';
+import 'package:examplaapplication2024/feature/users/homepages.dart';
 import 'package:examplaapplication2024/feature/settings/view/settings.dart';
 
 class BottomBar extends StatefulWidget {
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<BottomBar> {
     const SplashScreens(),
     const HomePage(),
     const Settings(),
-    const UsersView(),
+    const TestPage(),
   ];
 
   @override

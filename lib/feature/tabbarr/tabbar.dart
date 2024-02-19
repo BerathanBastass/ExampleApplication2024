@@ -3,9 +3,10 @@ import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
 import 'package:examplaapplication2024/feature/profile/view/profile.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,10 +27,11 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: CustomColors.pageColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         title: Text(
           "Products",
           style: TextStyle(fontSize: 35),
