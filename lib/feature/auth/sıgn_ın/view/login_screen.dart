@@ -9,6 +9,8 @@ import '../../../../core/images/images.dart';
 import 'package:sign_button/sign_button.dart';
 
 import 'package:examplaapplication2024/core/sized_box/sizedbox.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -39,11 +41,12 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
-      backgroundColor: CustomColors.pageColor,
+      backgroundColor: _theme.scaffoldBackgroundColor,
       appBar: AppBar(
         toolbarHeight: 5.0,
-        backgroundColor: CustomColors.pageColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
       ),
       body: appBody(height, image),
     );

@@ -28,6 +28,7 @@ class _ProfilState extends State<Profil> {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
       appBar: AppBar(
+        leading: null,
         backgroundColor: _theme.scaffoldBackgroundColor,
         title: const Text(
           "Profile",
@@ -118,7 +119,7 @@ class _ProfilState extends State<Profil> {
           backgroundColor: MaterialStatePropertyAll(CustomColors.orangeColor)),
       child: const Text(
         "Save Changes",
-        style: TextStyle(color: CustomColors.primaryColor, fontSize: 20),
+        style: TextStyle(color: Colors.black, fontSize: 20),
       ),
     );
   }

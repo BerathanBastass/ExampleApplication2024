@@ -4,7 +4,10 @@ class ProfilState {
 
   ProfilState({this.username = "", this.description = ""});
 
-  ProfilState copyWith({String? username, String? description}) {
+  ProfilState copyWith(
+      {String? username,
+      String? description,
+      required bool isSavedSuccessfully}) {
     return ProfilState(
       username: username ?? this.username,
       description: description ?? this.description,

@@ -1,7 +1,3 @@
-import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
-import 'package:examplaapplication2024/feature/favorites/cubit/layout_states.dart';
-
-import 'package:examplaapplication2024/core/utils/textstyles.dart';
 import 'package:examplaapplication2024/core/utils/customColors.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
@@ -21,11 +17,8 @@ class MixedDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FavoriteCubit([], FavoriteStates()),
-      child: NewScaffold(
-        product: product,
-      ),
+    return NewScaffold(
+      product: product,
     );
   }
 }
@@ -122,31 +115,11 @@ class NewScaffold extends StatelessWidget {
                 ),
               ),
             ),
-            Transform.translate(
-              offset: Offset(-175, -200),
-              child: BlocBuilder<FavoriteCubit, CubitUserStates>(
-                builder: (context, state) {
-                  bool isFavorite =
-                      context.watch<FavoriteCubit>().isExist('${product.id}');
-
-                  return IconButton(
-                    onPressed: () {
-                      context.read<FavoriteCubit>().getData('${product.id}');
-                    },
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.heart_broken,
-                      size: 40,
-                      color: isFavorite ? Colors.red : Colors.grey,
-                    ),
-                  );
-                },
-              ),
-            ),
           ],
         ),
       ),
       bottomSheet: BottomAppBar(
-        color: CustomColors.pageColor,
+        color: _theme.scaffoldBackgroundColor,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
@@ -158,10 +131,12 @@ class NewScaffold extends StatelessWidget {
               Text(
                 '\$${product.price}',
                 style: const TextStyle(fontSize: 25),
+                selectionColor: _theme.scaffoldBackgroundColor,
               ),
               ElevatedButton.icon(
                 style: ButtonStyle(
-                    iconColor: MaterialStateProperty.all(Colors.black),
+                    iconColor: MaterialStateProperty.all(
+                        _theme.scaffoldBackgroundColor),
                     backgroundColor:
                         MaterialStateProperty.all(CustomColors.orangeColor)),
                 onPressed: () {

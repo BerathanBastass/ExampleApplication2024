@@ -1,33 +1,29 @@
 import 'package:examplaapplication2024/feature/favorites/cubit/layout_states.dart';
-
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavoriteCubit extends Cubit<CubitUserStates> {
-  List<String> _words = [];
-  List<String> get words => _words;
-  List<Products> products = [];
+class FavoritesCubit extends Cubit<FavoritesState> {
+  final List<Products> _favorites = [];
 
-  FavoriteCubit(this.products, CubitUserStates initialState)
-      : super(initialState);
+  FavoritesCubit() : super(FavoritesInitial());
 
-  void getData(String word) {
-    final isExist = _words.contains(word);
-    if (isExist) {
-      _words.remove(word);
+  List<Products> get favorites => _favorites;
+
+  void toggleFavorites(Products product) {
+    if (_favorites.contains(product)) {
+      _favorites.remove(product);
     } else {
-      _words.add(word);
+      _favorites.add(product);
     }
-    emit(FavoriteStates());
+    emit(FavoritesUpdatedState(List.from(_favorites)));
   }
 
-  bool isExist(String word) {
-    final exists = _words.contains(word);
-    return exists;
+  bool isExist(Products product) {
+    return _favorites.contains(product);
   }
 
-  void clearFavorite() {
-    _words = [];
-    emit(FavoriteStates());
+  static FavoritesCubit of(BuildContext context) {
+    return context.read<FavoritesCubit>();
   }
 }

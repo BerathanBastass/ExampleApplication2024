@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:examplaapplication2024/core/splash/splash.dart';
+
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/tabbarr/tabbar.dart';
+import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
 import 'package:examplaapplication2024/feature/profile/view/profile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:examplaapplication2024/feature/users/homepages.dart';
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<BottomBar> {
   /// widget list
   final List<Widget> bottomBarPages = [
     const Profil(),
-    const SplashScreens(),
+    const Favorites(),
     const HomePage(),
     const Settings(),
     const TestPage(),
