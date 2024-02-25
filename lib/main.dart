@@ -1,3 +1,4 @@
+import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,7 +11,7 @@ import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
 import 'package:examplaapplication2024/feature/tabbarr/tabbar.dart';
 import 'package:examplaapplication2024/feature/profile/view/profile.dart';
 import 'package:examplaapplication2024/feature/settings/view/settings.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/mixed_screen.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/ui/view/mixed_screen.dart';
 import 'feature/auth/sıgn_ın/view/login_screen.dart';
 
 Future<void> main() async {
@@ -36,8 +37,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ChangeThemeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ChangeThemeCubit>(create: (context) => ChangeThemeCubit()),
+        BlocProvider<FavoritesCubit>(create: (context) => FavoritesCubit()),
+      ],
       child: BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
         builder: (context, ChangeThemeState themeState) {
           return MaterialApp(
@@ -47,7 +51,7 @@ class _MyAppState extends State<MyApp> {
               "/loginPage": (context) => const LoginScreen(),
               "/homePage": (context) => const HomePage(),
               "/bottomBar": (context) => const BottomBar(),
-              "/favorites": (context) => const Favorites(),
+              "/favorites": (context) => Favorites(),
               "/profile": (context) => const Profil(),
               "/midexScreen": (context) => MixedScreen(),
               "/settingsScreen": (context) => Settings(),
