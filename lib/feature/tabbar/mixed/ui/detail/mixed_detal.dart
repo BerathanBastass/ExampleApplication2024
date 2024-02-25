@@ -1,16 +1,19 @@
+import 'dart:async';
 import 'package:examplaapplication2024/core/utils/customColors.dart';
+import 'package:examplaapplication2024/feature/product/view/detail/demo_card_page.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:dio/dio.dart';
 import '../../../../../core/widgets/rating.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 
 class MixedDetailPage extends StatelessWidget {
   final Products product;
+
   List<Products> products = [];
 
   MixedDetailPage({required this.product});
@@ -23,23 +26,52 @@ class MixedDetailPage extends StatelessWidget {
   }
 }
 
-class NewScaffold extends StatelessWidget {
+class NewScaffold extends StatefulWidget {
   const NewScaffold({
-    super.key,
+    Key? key,
     required this.product,
-  });
+  }) : super(key: key);
 
   final Products product;
+
+  @override
+  _NewScaffoldState createState() => _NewScaffoldState(product: product);
+}
+
+class _NewScaffoldState extends State<NewScaffold> {
+  final Products product;
+  List<Products> products = [];
+  final Dio _dio = Dio();
+
+  _NewScaffoldState({required this.product});
+
+  @override
+  void initState() {
+    fetchProducts();
+    super.initState();
+  }
+
+  Future<void> fetchProducts() async {
+    final response = await _dio.get('https://fakestoreapi.com/products');
+    if (response.statusCode == 200) {
+      final List<dynamic> responseData = response.data;
+      Timer(const Duration(seconds: 0), () {
+        setState(() {
+          products =
+              responseData.map((item) => Products.fromJson(item)).toList();
+        });
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: _theme.scaffoldBackgroundColor,
-          title: Text(
-            '${product.title}',
-          )),
+        backgroundColor: _theme.scaffoldBackgroundColor,
+        title: Text('${product.title}'),
+      ),
       backgroundColor: _theme.scaffoldBackgroundColor,
       body: Transform.translate(
         offset: const Offset(0.0, -60.0),
@@ -113,6 +145,17 @@ class NewScaffold extends StatelessWidget {
                 child: FSRating(
                   rating: product.rating.rate,
                 ),
+              ),
+            ),
+            Container(
+              height: 150,
+              width: 500,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return ShotCard(product: products[index]);
+                },
               ),
             ),
           ],
