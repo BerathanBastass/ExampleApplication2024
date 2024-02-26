@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:examplaapplication2024/core/interfaces/login_interface.dart';
+
 import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/model/user_model.dart';
+
+import '../interaces/login_interface.dart';
 
 class LoginService implements ILogin {
   @override

@@ -1,9 +1,4 @@
-/* 
-// Example Usage
-Map<String, dynamic> map = jsonDecode(<myJSONString>);
-var myRootNode = Root.fromJson(map);
-*/
-class Root {
+class UserModel {
   int? id;
   String? email;
   String? password;
@@ -11,7 +6,7 @@ class Root {
   String? role;
   String? avatar;
 
-  Root({
+  UserModel({
     this.id,
     this.email,
     this.password,
@@ -20,7 +15,7 @@ class Root {
     this.avatar,
   });
 
-  Root.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     email = json['email'];
     password = json['password'];

@@ -1,20 +1,17 @@
-import 'dart:async';
 import 'package:examplaapplication2024/core/utils/customColors.dart';
 import 'package:examplaapplication2024/feature/product/view/detail/demo_card_page.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_cubit.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_states.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:dio/dio.dart';
 import '../../../../../core/widgets/rating.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 
 class MixedDetailPage extends StatelessWidget {
   final Products product;
-
-  List<Products> products = [];
 
   MixedDetailPage({required this.product});
 
@@ -35,42 +32,20 @@ class NewScaffold extends StatefulWidget {
   final Products product;
 
   @override
-  _NewScaffoldState createState() => _NewScaffoldState(product: product);
+  _NewScaffoldState createState() => _NewScaffoldState();
 }
 
 class _NewScaffoldState extends State<NewScaffold> {
-  final Products product;
-  List<Products> products = [];
-  final Dio _dio = Dio();
-
-  _NewScaffoldState({required this.product});
-
-  @override
-  void initState() {
-    fetchProducts();
-    super.initState();
-  }
-
-  Future<void> fetchProducts() async {
-    final response = await _dio.get('https://fakestoreapi.com/products');
-    if (response.statusCode == 200) {
-      final List<dynamic> responseData = response.data;
-      Timer(const Duration(seconds: 0), () {
-        setState(() {
-          products =
-              responseData.map((item) => Products.fromJson(item)).toList();
-        });
-      });
-    }
-  }
+  late MixedCubit mixedCubit;
 
   @override
   Widget build(BuildContext context) {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: _theme.scaffoldBackgroundColor,
-        title: Text('${product.title}'),
+        title: Text('${widget.product.title}'),
       ),
       backgroundColor: _theme.scaffoldBackgroundColor,
       body: Transform.translate(
@@ -78,7 +53,7 @@ class _NewScaffoldState extends State<NewScaffold> {
         child: Column(
           children: [
             Image.network(
-              product.image,
+              widget.product.image,
               width: 100,
               height: 300,
               alignment: Alignment.center,
@@ -86,10 +61,10 @@ class _NewScaffoldState extends State<NewScaffold> {
             Transform.translate(
               offset: const Offset(5.0, -60.0),
               child: Text(
-                'Description \n${product.description}',
-                style: TextStyle(fontStyle: FontStyle.normal),
+                'Description \n${widget.product.description}',
+                style: TextStyle(fontWeight: FontWeight.bold),
                 overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+                maxLines: 5,
               ),
             ),
             Row(
@@ -97,9 +72,9 @@ class _NewScaffoldState extends State<NewScaffold> {
                 Transform.translate(
                   offset: Offset(0.0, -60.0),
                   child: Text(
-                    '\$${product.price}',
+                    '\$${widget.product.price}',
                     style: const TextStyle(
-                      fontSize: 25,
+                      fontSize: 30,
                       decorationColor: Colors.white,
                       fontWeight: FontWeight.normal,
                     ),
@@ -112,7 +87,7 @@ class _NewScaffoldState extends State<NewScaffold> {
               child: Transform.translate(
                 offset: const Offset(-50.0, -100.0),
                 child: Text(
-                  ' ${product.rating.count}',
+                  ' ${widget.product.rating.count}',
                   style: const TextStyle(
                       fontSize: 30, fontWeight: FontWeight.normal),
                 ),
@@ -132,30 +107,58 @@ class _NewScaffoldState extends State<NewScaffold> {
                 child: Transform.translate(
                   offset: const Offset(-120.0, -166.0),
                   child: Text(
-                    '${product.rating.rate} -',
+                    '${widget.product.rating.rate} -',
                     style: const TextStyle(
                       fontSize: 30,
                     ),
                   ),
                 )),
             Align(
-              alignment: Alignment.topRight,
-              child: Transform.translate(
-                offset: const Offset(215.0, -170.0),
-                child: FSRating(
-                  rating: product.rating.rate,
-                ),
-              ),
-            ),
-            Container(
-              height: 150,
-              width: 500,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  return ShotCard(product: products[index]);
+                alignment: Alignment.topRight,
+                child: Transform.translate(
+                  offset: const Offset(-220.0, -10.0),
+                  child: Text(
+                    'Recommended sides',
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                )),
+            Expanded(
+              child: BlocProvider(
+                create: (context) {
+                  mixedCubit = context.read<MixedCubit>()..fetchProducts();
+                  return mixedCubit;
                 },
+                child: BlocBuilder<MixedCubit, MixedState>(
+                  builder: (context, state) {
+                    if (state is InitMixedState) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is LoadingMixedState) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is ResponseMixedState) {
+                      return Container(
+                        height: 150,
+                        width: 500,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.products.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MixedDetailPage(
+                                          product: state.products[index]))),
+                              child: ShotCard(product: state.products[index]),
+                            );
+                          },
+                        ),
+                      );
+                    }
+
+                    return Container();
+                  },
+                ),
               ),
             ),
           ],
@@ -172,26 +175,28 @@ class _NewScaffoldState extends State<NewScaffold> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '\$${product.price}',
-                style: const TextStyle(fontSize: 25),
+                '\$${widget.product.price}',
+                style: const TextStyle(fontSize: 30),
                 selectionColor: _theme.scaffoldBackgroundColor,
               ),
               ElevatedButton.icon(
                 style: ButtonStyle(
-                    iconColor: MaterialStateProperty.all(
-                        _theme.scaffoldBackgroundColor),
-                    backgroundColor:
-                        MaterialStateProperty.all(CustomColors.orangeColor)),
+                  iconColor:
+                      MaterialStateProperty.all(_theme.scaffoldBackgroundColor),
+                  backgroundColor:
+                      MaterialStateProperty.all(CustomColors.orangeColor),
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => AddCart()));
                 },
                 icon: const Icon(
                   FontAwesomeIcons.creditCard,
+                  color: Colors.black,
                 ),
                 label: const Text(
                   "Add to Cart",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontSize: 15),
                 ),
               )
             ],
