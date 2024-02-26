@@ -1,5 +1,5 @@
 import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/detail/mixed_detal.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/ui/detail/mixed_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

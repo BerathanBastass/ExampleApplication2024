@@ -1,21 +1,19 @@
 import 'dart:io';
-
 import 'package:examplaapplication2024/feature/users/model/users_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TestPage extends StatefulWidget {
-  const TestPage({super.key});
+class UsersPage extends StatefulWidget {
+  const UsersPage({super.key});
 
   @override
-  State<TestPage> createState() => _TestPageState();
+  State<UsersPage> createState() => _UsersPageState();
 }
 
-class _TestPageState extends State<TestPage> {
+class _UsersPageState extends State<UsersPage> {
   final Dio dio = Dio();
   final String url = 'https://api.escuelajs.co/api/v1/users';
   List<Root> users = [];

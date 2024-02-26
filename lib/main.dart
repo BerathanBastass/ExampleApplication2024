@@ -1,4 +1,6 @@
 import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
+import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,6 +43,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider<ChangeThemeCubit>(create: (context) => ChangeThemeCubit()),
         BlocProvider<FavoritesCubit>(create: (context) => FavoritesCubit()),
+        BlocProvider<MixedCubit>(create: (context) => MixedCubit()),
       ],
       child: BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
         builder: (context, ChangeThemeState themeState) {
@@ -53,7 +56,7 @@ class _MyAppState extends State<MyApp> {
               "/bottomBar": (context) => const BottomBar(),
               "/favorites": (context) => Favorites(),
               "/profile": (context) => const Profil(),
-              "/midexScreen": (context) => MixedScreen(),
+              "/mixedScreen": (context) => MixedScreen(),
               "/settingsScreen": (context) => Settings(),
             },
             darkTheme: (themeState is ThemeAutoState)
