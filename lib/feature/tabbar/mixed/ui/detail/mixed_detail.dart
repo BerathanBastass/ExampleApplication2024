@@ -41,6 +41,7 @@ class _NewScaffoldState extends State<NewScaffold> {
   @override
   Widget build(BuildContext context) {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: _theme.scaffoldBackgroundColor,
@@ -112,48 +113,51 @@ class _NewScaffoldState extends State<NewScaffold> {
                     ),
                   ),
                 )),
-            BlocProvider(
-              create: (context) {
-                mixedCubit = context.read<MixedCubit>()..fetchProducts();
-                return mixedCubit;
-              },
-              child: BlocBuilder<MixedCubit, MixedState>(
-                builder: (context, state) {
-                  if (state is InitMixedState) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is LoadingMixedState) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is ResponseMixedState) {
-                    return Container(
-                      height: 150,
-                      width: 500,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.products.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MixedDetailPage(
-                                        product: state.products[index]))),
-                            child: ShotCard(product: state.products[index]),
-                          );
-                        },
-                      ),
-                    );
-                  }
-
-                  return Container();
-                },
-              ),
-            ),
             Align(
-              alignment: Alignment.topRight,
-              child: Transform.translate(
-                offset: const Offset(220.0, -320.0),
-                child: FSRating(
-                  rating: widget.product.rating.rate,
+                alignment: Alignment.topRight,
+                child: Transform.translate(
+                  offset: const Offset(-220.0, -10.0),
+                  child: Text(
+                    'Recommended sides',
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                )),
+            Expanded(
+              child: BlocProvider(
+                create: (context) {
+                  mixedCubit = context.read<MixedCubit>()..fetchProducts();
+                  return mixedCubit;
+                },
+                child: BlocBuilder<MixedCubit, MixedState>(
+                  builder: (context, state) {
+                    if (state is InitMixedState) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is LoadingMixedState) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is ResponseMixedState) {
+                      return Container(
+                        height: 150,
+                        width: 500,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.products.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MixedDetailPage(
+                                          product: state.products[index]))),
+                              child: ShotCard(product: state.products[index]),
+                            );
+                          },
+                        ),
+                      );
+                    }
+
+                    return Container();
+                  },
                 ),
               ),
             ),

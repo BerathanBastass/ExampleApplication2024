@@ -43,7 +43,7 @@ class ShotCard extends StatelessWidget {
                 child: Text(
                   '\$${product.price}',
                   style: const TextStyle(
-                      fontSize: 10, fontWeight: FontWeight.bold),
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

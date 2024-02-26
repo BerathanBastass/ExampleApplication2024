@@ -1,5 +1,6 @@
 import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
 import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_cubit.dart';
+import 'package:examplaapplication2024/feature/users/cubit/users_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<ChangeThemeCubit>(create: (context) => ChangeThemeCubit()),
         BlocProvider<FavoritesCubit>(create: (context) => FavoritesCubit()),
         BlocProvider<MixedCubit>(create: (context) => MixedCubit()),
+        BlocProvider<UsersCubit>(create: (context) => UsersCubit()),
       ],
       child: BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
         builder: (context, ChangeThemeState themeState) {

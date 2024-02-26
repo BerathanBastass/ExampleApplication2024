@@ -1,4 +1,3 @@
-import 'package:examplaapplication2024/core/interfaces/login_interface.dart';
 import 'package:examplaapplication2024/core/splash/splash.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/model/user_model.dart';
@@ -11,6 +10,8 @@ import 'package:sign_button/sign_button.dart';
 import 'package:examplaapplication2024/core/sized_box/sizedbox.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
+
+import '../interaces/login_interface.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
