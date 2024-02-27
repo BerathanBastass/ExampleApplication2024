@@ -1,153 +1,140 @@
-import 'package:examplaapplication2024/core/sized_box/sizedbox.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../core/utils/customcolors.dart';
-import '../cubit/profile_event.dart';
-import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
+import '../cubit/profile_event.dart';
+import '../../../core/utils/customcolors.dart';
 
-class Profil extends StatefulWidget {
-  const Profil({Key? key}) : super(key: key);
-
-  @override
-  State<Profil> createState() => _ProfilState();
-}
-
-class _ProfilState extends State<Profil> {
-  late ProfilCubit profilCubit;
+class Profil extends StatelessWidget {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    profilCubit = ProfilCubit();
-  }
-
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     String image = "assets/pinksale.png";
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
-    return Scaffold(
-      appBar: AppBar(
-        leading: null,
-        backgroundColor: _theme.scaffoldBackgroundColor,
-        title: const Text(
-          "Profile",
-          style: TextStyle(fontSize: 35),
-        ),
-      ),
-      backgroundColor: _theme.scaffoldBackgroundColor,
-      body: appBody(height, image),
-    );
-  }
 
-  SingleChildScrollView appBody(double height, String image) {
-    return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            topImageContainer(image),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Transform.translate(
-                      offset: const Offset(5, -70),
-                      child: _CircleAvatars(),
-                    ),
-                    _UsernameTile(),
-                    sbxh(),
-                    _DescriptionTile(),
-                    sbxh(),
-                    _SaveButtons()
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  CircleAvatar _CircleAvatars() {
-    return const CircleAvatar(
-      radius: 60,
-      backgroundColor: CustomColors.orangeColor,
-      child: Icon(FontAwesomeIcons.user),
-    );
-  }
-
-  ListTile _UsernameTile() {
-    return ListTile(
-      title: TextFormField(
-        style: TextStyle(fontSize: 20),
-        decoration: const InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: CustomColors.orangeColor),
+    return BlocProvider(
+      create: (context) => UserProfileCubit()..loadUserProfile(),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: null,
+          backgroundColor: _theme.scaffoldBackgroundColor,
+          title: const Text(
+            "Profile",
+            style: TextStyle(fontSize: 35),
           ),
-          hintText: "My Username",
+        ),
+        backgroundColor: _theme.scaffoldBackgroundColor,
+        body: BlocListener<UserProfileCubit, UserProfileState>(
+          listener: (context, state) {
+            if (state is UserProfileLoaded) {
+              _usernameController.text = state.username;
+              _descriptionController.text = state.description;
+            }
+          },
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  topImageContainer(image),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Form(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Transform.translate(
+                            offset: const Offset(5, -200),
+                            child: const CircleAvatar(
+                              radius: 60,
+                              backgroundColor: CustomColors.orangeColor,
+                              child: Icon(
+                                Icons.account_circle,
+                                size: 80,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Transform.translate(
+                            offset: Offset(0, -160),
+                            child: ListTile(
+                              title: TextFormField(
+                                controller: _usernameController,
+                                style: const TextStyle(fontSize: 25),
+                                decoration: const InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: CustomColors.orangeColor),
+                                  ),
+                                  hintText: "My Username",
+                                ),
+                              ),
+                              tileColor: CustomColors.orangeColor,
+                              leading: const Icon(Icons.account_circle),
+                              contentPadding: const EdgeInsets.all(13.0),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Transform.translate(
+                            offset: Offset(0, -130),
+                            child: ListTile(
+                              title: TextFormField(
+                                controller: _descriptionController,
+                                style: const TextStyle(fontSize: 25),
+                                decoration: const InputDecoration.collapsed(
+                                  hintText: "My description",
+                                ),
+                                maxLength: 50,
+                              ),
+                              tileColor: CustomColors.orangeColor,
+                              leading: const Icon(Icons.edit),
+                              contentPadding: const EdgeInsets.all(20.0),
+                            ),
+                          ),
+                          const SizedBox(height: 25),
+                          Transform.translate(
+                            offset: Offset(0, -100),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context
+                                    .read<UserProfileCubit>()
+                                    .updateUserProfile(
+                                      _usernameController.text,
+                                      _descriptionController.text,
+                                    );
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    CustomColors.orangeColor),
+                              ),
+                              child: const Text(
+                                "Save Changes",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
-      tileColor: CustomColors.orangeColor,
-      leading: const Icon(FontAwesomeIcons.user),
-      contentPadding: const EdgeInsets.all(10.0),
     );
   }
 
-  ListTile _DescriptionTile() {
-    return ListTile(
-      title: TextFormField(
-        style: const TextStyle(fontSize: 20),
-        decoration: const InputDecoration.collapsed(hintText: "My description"),
-        maxLength: 50,
-      ),
-      tileColor: CustomColors.orangeColor,
-      leading: Icon(FontAwesomeIcons.penToSquare),
-      contentPadding: const EdgeInsets.all(20.0),
-    );
-  }
-
-  ElevatedButton _SaveButtons() {
-    return ElevatedButton(
-      onPressed: () {
-        profilCubit.saveChanges();
-      },
-      style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(CustomColors.orangeColor)),
-      child: const Text(
-        "Save Changes",
-        style: TextStyle(color: Colors.black, fontSize: 20),
-      ),
-    );
-  }
-
-  topImageContainer(String image) {
+  Widget topImageContainer(String image) {
     return Transform.translate(
-      offset: Offset(-10, -30),
+      offset: const Offset(50, -100),
       child: Image.asset(
         image,
-        color: CustomColors.orangeColor,
-        height: 200,
-      ),
-    );
-  }
-
-  InputDecoration customInputDecoration(String hintText) {
-    return InputDecoration(
-      hintText: hintText,
-      hintStyle: const TextStyle(color: Colors.grey),
-      enabledBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: Colors.grey,
-        ),
-      ),
-      focusedBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: Colors.grey,
-        ),
+        height: 300,
       ),
     );
   }

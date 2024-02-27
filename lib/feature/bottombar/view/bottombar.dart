@@ -33,7 +33,7 @@ class _MyHomePageState extends State<BottomBar> {
 
   /// widget list
   final List<Widget> bottomBarPages = [
-    const Profil(),
+    Profil(),
     const Favorites(),
     const HomePage(),
     const Settings(),

@@ -45,10 +45,6 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
       backgroundColor: _theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        toolbarHeight: 5.0,
-        backgroundColor: _theme.scaffoldBackgroundColor,
-      ),
       body: appBody(height, image),
     );
   }
@@ -68,7 +64,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     tabBar(),
-                    sbxh(),
+                    sbxw(),
                     emailTextField(),
                     sbxh(),
                     passwordTextField(),
@@ -95,25 +91,28 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
       length: 2,
       child: Container(
         child: Column(children: [
-          TabBar(
-            indicatorColor: CustomColors.orangeColor,
-            labelStyle: const TextStyle(color: CustomColors.orangeColor),
-            unselectedLabelColor: Colors.grey,
-            controller: _controller,
-            tabs: const [
-              Tab(
-                child: Text(
-                  'Sıgn In',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          Transform.translate(
+            offset: Offset(0, -70),
+            child: TabBar(
+              indicatorColor: CustomColors.orangeColor,
+              labelStyle: const TextStyle(color: CustomColors.orangeColor),
+              unselectedLabelColor: Colors.grey,
+              controller: _controller,
+              tabs: const [
+                Tab(
+                  child: Text(
+                    'Sıgn In',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
-              ),
-              Tab(
-                child: Text(
-                  'Sıgn Up',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                Tab(
+                  child: Text(
+                    'Sıgn Up',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ]),
       ),
@@ -273,11 +272,10 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
 
   topImageContainer(String image) {
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.topCenter,
       child: Image.asset(
         image,
-        color: CustomColors.orangeColor,
-        height: 200,
+        height: 300,
       ),
     );
   }

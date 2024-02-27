@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage>
           MixedScreen(),
           const AddCart(),
           const Favorites(),
-          const Profil(),
+          Profil(),
         ],
       ),
     );
