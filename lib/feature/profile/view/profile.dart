@@ -10,7 +10,6 @@ class Profil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     String image = "assets/pinksale.png";
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
 
@@ -38,7 +37,7 @@ class Profil extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  topImageContainer(image),
+                  topImageContainer(image, context),
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Form(
@@ -129,12 +128,22 @@ class Profil extends StatelessWidget {
     );
   }
 
-  Widget topImageContainer(String image) {
+  Widget topImageContainer(String image, BuildContext context) {
+    final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
+
     return Transform.translate(
       offset: const Offset(50, -100),
-      child: Image.asset(
-        image,
-        height: 300,
+      child: ColorFiltered(
+        colorFilter: ColorFilter.mode(
+          _theme.scaffoldBackgroundColor!,
+          BlendMode.modulate,
+        ),
+        child: Container(
+          child: Image.asset(
+            image,
+            height: 300,
+          ),
+        ),
       ),
     );
   }

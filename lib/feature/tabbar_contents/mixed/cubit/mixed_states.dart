@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/model/mixed_models.dart';
 
 abstract class MixedState extends Equatable {
   const MixedState();

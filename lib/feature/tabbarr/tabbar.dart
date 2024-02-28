@@ -1,8 +1,7 @@
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
-import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
-import 'package:examplaapplication2024/feature/profile/view/profile.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/view/mixed_screen.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/electronic/ui/view/electronic_screen.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/female/ui/view/female_screen.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/view/mixed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -53,7 +52,6 @@ class _HomePageState extends State<HomePage>
             Tab(text: 'Mixed'),
             Tab(text: 'Female'),
             Tab(text: 'Kids'),
-            Tab(text: 'Electronic'),
           ],
         ),
       ),
@@ -61,9 +59,8 @@ class _HomePageState extends State<HomePage>
         controller: _tabController,
         children: [
           MixedScreen(),
-          const AddCart(),
-          const Favorites(),
-          Profil(),
+          FemaleScreen(),
+          ElectronicScreen(),
         ],
       ),
     );

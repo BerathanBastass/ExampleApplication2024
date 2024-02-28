@@ -1,4 +1,4 @@
-import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/model/mixed_models.dart';
 import 'package:flutter/material.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
