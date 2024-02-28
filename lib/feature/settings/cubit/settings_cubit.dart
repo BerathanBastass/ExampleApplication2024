@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/change_state.dart';
 import 'package:examplaapplication2024/main.dart';
 import 'package:examplaapplication2024/feature/helpers.dart/helper.dart';
+import 'package:examplaapplication2024/core/enums/enums.dart';
+import 'package:examplaapplication2024/core/shared_preferences/shared_pref_helper.dart';
 
 class ChangeThemeCubit extends Cubit<ChangeThemeState> {
   ChangeThemeCubit()
@@ -48,5 +50,33 @@ class ChangeThemeCubit extends Cubit<ChangeThemeState> {
         break;
     }
     MyApp.mainSharedPreferences!.setInt('selectedThemeIndex', mode);
+  }
+}
+
+class LocalizationCubit extends Cubit<LocalizationState> {
+  LocalizationCubit() : super(LocalizationInitial());
+
+  void appLanguageFunction(LanguagesTypesEnums language) {
+    switch (language) {
+      case LanguagesTypesEnums.initial:
+        if (SharedPreferencesHelper.getData('lang') != null) {
+          if (SharedPreferencesHelper.getData('lang') == 'tr') {
+            emit(ChangeAppLanguage(languageCode: 'tr'));
+          } else {
+            emit(ChangeAppLanguage(languageCode: 'en'));
+          }
+        }
+        break;
+      case LanguagesTypesEnums.turkey:
+        SharedPreferencesHelper.setData('lang', 'tr');
+        emit(ChangeAppLanguage(languageCode: 'tr'));
+        break;
+      case LanguagesTypesEnums.english:
+        SharedPreferencesHelper.setData('lang', 'en');
+        emit(ChangeAppLanguage(languageCode: 'en'));
+        break;
+      default:
+        emit(ChangeAppLanguage(languageCode: 'en'));
+    }
   }
 }

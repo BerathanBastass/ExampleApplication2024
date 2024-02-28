@@ -1,0 +1,30 @@
+{
+    "theme" : "Tema",
+    "language" : "Dil",
+    "lightmode" : "Açık",
+    "darkmode" : "Gece",
+    "auto" : "Oto",
+    "english" : "İnglizce",
+    "turkish" : "Türkçe",
+
+
+
+    "products" : "Ürünler",
+    "mixed" : "Karışık",
+    "female" : "Kadın",
+    "kids" : "Çocuk",
+    "recommend" : "Önerilen taraflar",
+
+
+    "favorites": "Favoriler",
+    "favoritestext": "Herhangi Bir Ürünü Favorilemediniz!",
+
+
+    "profile": "Profil",
+    "myusername": "Kullanıcı Adı",
+    "mydescription": "Hakkımda",
+    "savechanges": "Kaydet"
+
+
+    
+  }

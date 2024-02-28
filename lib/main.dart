@@ -1,24 +1,27 @@
-import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
-import 'package:examplaapplication2024/feature/profile/cubit/profile_event.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/electronic/cubit/electornic_cubit.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/female/cubit/female_cubit.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/mixed/cubit/mixed_cubit.dart';
-import 'package:examplaapplication2024/feature/users/cubit/users_cubit.dart';
+import 'package:examplaapplication2024/feature/settings/view/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:examplaapplication2024/feature/helpers.dart/helper.dart';
-import 'package:examplaapplication2024/feature/settings/cubit/change_state.dart';
-import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
-import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
-import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
-import 'package:examplaapplication2024/feature/tabbarr/tabbar.dart';
-import 'package:examplaapplication2024/feature/profile/view/profile.dart';
-import 'package:examplaapplication2024/feature/settings/view/settings.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/view/mixed_screen.dart';
+import 'core/app_localizations/app_localization.dart';
+import 'core/enums/enums.dart';
+import 'feature/favorites/cubit/layot_cubit.dart';
+import 'feature/profile/cubit/profile_event.dart';
+import 'feature/tabbar_contents/electronic/cubit/electornic_cubit.dart';
+import 'feature/tabbar_contents/female/cubit/female_cubit.dart';
+import 'feature/tabbar_contents/mixed/cubit/mixed_cubit.dart';
+import 'feature/users/cubit/users_cubit.dart';
+import 'feature/helpers.dart/helper.dart';
+import 'feature/settings/cubit/change_state.dart';
+import 'feature/settings/cubit/settings_cubit.dart';
+import 'feature/bottombar/view/bottombar.dart';
+import 'feature/favorites/view/favorites.dart';
+import 'feature/tabbarr/tabbar.dart';
+import 'feature/profile/view/profile.dart';
+import 'feature/tabbar_contents/mixed/ui/view/mixed_screen.dart';
 import 'feature/auth/sıgn_ın/view/login_screen.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MyApp.mainSharedPreferences = await SharedPreferences.getInstance();
   final themeIndex = MyApp.mainSharedPreferences!.getInt('selectedThemeIndex');
@@ -50,32 +53,65 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<UserProfileCubit>(create: (context) => UserProfileCubit()),
         BlocProvider<FemaleCubit>(create: (context) => FemaleCubit()),
         BlocProvider<ElectronicCubit>(create: (context) => ElectronicCubit()),
+        BlocProvider<LocalizationCubit>(
+          create: (context) => LocalizationCubit()
+            ..appLanguageFunction(LanguagesTypesEnums.initial),
+        ),
       ],
       child: BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
         builder: (context, ChangeThemeState themeState) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            routes: {
-              "/loginPage": (context) => const LoginScreen(),
-              "/homePage": (context) => const HomePage(),
-              "/bottomBar": (context) => const BottomBar(),
-              "/favorites": (context) => Favorites(),
-              "/profile": (context) => Profil(),
-              "/mixedScreen": (context) => MixedScreen(),
-              "/settingsScreen": (context) => Settings(),
+          return BlocBuilder<LocalizationCubit, LocalizationState>(
+            builder: (context, state) {
+              if (state is ChangeAppLanguage) {
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Flutter Demo',
+                  routes: {
+                    "/loginPage": (context) => const LoginScreen(),
+                    "/homePage": (context) => const HomePage(),
+                    "/bottomBar": (context) => const BottomBar(),
+                    "/favorites": (context) => Favorites(),
+                    "/profile": (context) => Profil(),
+                    "/mixedScreen": (context) => MixedScreen(),
+                    "/settingsScreen": (context) => Settings(),
+                  },
+                  darkTheme: (themeState is ThemeAutoState)
+                      ? buildThemeData(myThemes[1])
+                      : (themeState is ThemeLightState)
+                          ? buildThemeData(myThemes[0])
+                          : buildThemeData(myThemes[1]),
+                  theme: (themeState is ThemeAutoState)
+                      ? buildThemeData(myThemes[0])
+                      : (themeState is ThemeLightState)
+                          ? buildThemeData(myThemes[0])
+                          : buildThemeData(myThemes[1]),
+                  home: const LoginScreen(),
+                  locale: Locale(state.languageCode!),
+                  supportedLocales: const [
+                    Locale('en'),
+                    Locale('tr'),
+                  ],
+                  localizationsDelegates: const [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  localeResolutionCallback: (deviceLocale, supportedLocales) {
+                    for (var locale in supportedLocales) {
+                      if (deviceLocale != null) {
+                        if (deviceLocale.languageCode == locale.languageCode) {
+                          return deviceLocale;
+                        }
+                      }
+                    }
+                    return supportedLocales.first;
+                  },
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
             },
-            darkTheme: (themeState is ThemeAutoState)
-                ? buildThemeData(myThemes[1])
-                : (themeState is ThemeLightState)
-                    ? buildThemeData(myThemes[0])
-                    : buildThemeData(myThemes[1]),
-            theme: (themeState is ThemeAutoState)
-                ? buildThemeData(myThemes[0])
-                : (themeState is ThemeLightState)
-                    ? buildThemeData(myThemes[0])
-                    : buildThemeData(myThemes[1]),
-            home: const LoginScreen(),
           );
         },
       ),
