@@ -1,24 +1,31 @@
 # ExampleApplication2024
 
-A new Flutter project.
+Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A Flutter starter ecommerce app built with BLOC pattern. It has following features
 
-A few resources to get you started if this is your first Flutter project:
+  - Different animations across different part of screen 
+  - Runs on both Android & IOS.
+  - It helps in managing state and make access to data from a central place in your project.
+  - Its a state management system for Flutter recommended by Google developers.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+  ### Dependencies
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is built with various awesome open sourced libraries
+
+* [flutter_bloc](https://pub.dev/packages/flutter_bloc) - to mantain state and make every widget 
+independent using blocs 
+
+* [shared_preferences](https://pub.dev/packages/shared_preferences) - Perfect for storing data
+
+* [dio](https://pub.dev/packages/dio) - Perfect for api requests
 
 ## Görseller
 
 ![ScreenShots](assets/pinksale_all_photo.png)
-Uygulamanın ana ekranı.
+Uygulamanın Ekranları.
 
 
 
