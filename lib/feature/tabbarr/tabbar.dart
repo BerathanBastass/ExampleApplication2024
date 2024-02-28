@@ -1,3 +1,4 @@
+import 'package:examplaapplication2024/core/app_localizations/app_localization.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/tabbar_contents/electronic/ui/view/electronic_screen.dart';
 import 'package:examplaapplication2024/feature/tabbar_contents/female/ui/view/female_screen.dart';
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage>
         automaticallyImplyLeading: false,
         backgroundColor: _theme.scaffoldBackgroundColor,
         title: Text(
-          "Products",
+          AppLocalizations.of(context).translate('products'),
           style: TextStyle(fontSize: 35),
         ),
         actions: [
@@ -48,10 +49,10 @@ class _HomePageState extends State<HomePage>
           labelColor: CustomColors.orangeColor,
           indicatorColor: CustomColors.orangeColor,
           controller: _tabController,
-          tabs: const [
-            Tab(text: 'Mixed'),
-            Tab(text: 'Female'),
-            Tab(text: 'Kids'),
+          tabs: [
+            Tab(text: AppLocalizations.of(context).translate('mixed')),
+            Tab(text: AppLocalizations.of(context).translate('female')),
+            Tab(text: AppLocalizations.of(context).translate('kids')),
           ],
         ),
       ),

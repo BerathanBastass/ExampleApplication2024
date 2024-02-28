@@ -1,0 +1,32 @@
+{ 
+    "theme" : "Theme",
+    "language" : "Language",
+    "lightmode" : "Light Mode",
+    "darkmode" : "Dark Mode",
+    "auto" : "Auto",
+    "english" : "English",
+    "turkish" : "Turkish",
+
+
+    "products" : "Products",
+    "mixed" : "Mixed",
+    "female" : "Female",
+    "kids" : "kids",
+    "recommend" : "Recommended sides",
+
+
+
+    "favorites": "Favoriler",
+    "favoritestext": "You Did Not Favorite Any Product!",
+
+
+
+    "profile": "Profile",
+    "myusername": "My username",
+    "mydescription": "My description",
+    "savechanges": "Save Changes"
+}
+
+
+
+  

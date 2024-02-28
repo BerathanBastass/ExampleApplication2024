@@ -36,7 +36,7 @@ class _MyHomePageState extends State<BottomBar> {
     Profil(),
     const Favorites(),
     const HomePage(),
-    const Settings(),
+    Settings(),
     const UsersPage(),
   ];
 

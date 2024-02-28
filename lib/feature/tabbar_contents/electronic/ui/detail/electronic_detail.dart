@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 
+import '../../../../../core/app_localizations/app_localization.dart';
+
 class ElectronicDetail extends StatelessWidget {
   final ElectronicModel electronic;
 
@@ -115,9 +117,9 @@ class _NewScaffoldState extends State<NewScaffold> {
             Align(
                 alignment: Alignment.topRight,
                 child: Transform.translate(
-                  offset: const Offset(-220.0, -10.0),
+                  offset: const Offset(-225.0, -10.0),
                   child: Text(
-                    'Recommended sides',
+                    AppLocalizations.of(context).translate('recommend'),
                     style: const TextStyle(
                         fontSize: 15, fontWeight: FontWeight.bold),
                   ),

@@ -1,3 +1,4 @@
+import 'package:examplaapplication2024/core/app_localizations/app_localization.dart';
 import 'package:examplaapplication2024/core/utils/customColors.dart';
 import 'package:examplaapplication2024/feature/product/view/detail/demo_card_page.dart';
 import 'package:examplaapplication2024/feature/tabbar_contents/mixed/cubit/mixed_cubit.dart';
@@ -115,9 +116,9 @@ class _NewScaffoldState extends State<NewScaffold> {
             Align(
                 alignment: Alignment.topRight,
                 child: Transform.translate(
-                  offset: const Offset(-220.0, -10.0),
+                  offset: const Offset(-228.0, -10.0),
                   child: Text(
-                    'Recommended sides',
+                    AppLocalizations.of(context).translate('recommend'),
                     style: const TextStyle(
                         fontSize: 15, fontWeight: FontWeight.bold),
                   ),

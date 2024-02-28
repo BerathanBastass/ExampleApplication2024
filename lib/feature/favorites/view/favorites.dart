@@ -3,6 +3,7 @@ import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/detail/m
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/app_localizations/app_localization.dart';
 import '../../settings/cubit/settings_cubit.dart';
 
 class Favorites extends StatefulWidget {
@@ -25,7 +26,7 @@ class _FavoritesState extends State<Favorites> {
       appBar: AppBar(
         backgroundColor: _theme.scaffoldBackgroundColor,
         title: Text(
-          "Favorites",
+          AppLocalizations.of(context).translate('favorites'),
           style: TextStyle(fontSize: 30),
         ),
       ),
@@ -37,7 +38,7 @@ class _FavoritesState extends State<Favorites> {
               offset: Offset(1, 150),
               child: Center(
                 child: Text(
-                  "Herhangi Bir Ürünü Favorilemediniz!",
+                  AppLocalizations.of(context).translate('favoritestext'),
                   style: TextStyle(
                     fontSize: 20,
                   ),

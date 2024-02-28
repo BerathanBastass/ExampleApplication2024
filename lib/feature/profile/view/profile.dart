@@ -1,3 +1,4 @@
+import 'package:examplaapplication2024/core/app_localizations/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
@@ -19,8 +20,8 @@ class Profil extends StatelessWidget {
         appBar: AppBar(
           leading: null,
           backgroundColor: _theme.scaffoldBackgroundColor,
-          title: const Text(
-            "Profile",
+          title: Text(
+            AppLocalizations.of(context).translate('profile'),
             style: TextStyle(fontSize: 35),
           ),
         ),
@@ -62,12 +63,13 @@ class Profil extends StatelessWidget {
                               title: TextFormField(
                                 controller: _usernameController,
                                 style: const TextStyle(fontSize: 25),
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: CustomColors.orangeColor),
                                   ),
-                                  hintText: "My Username",
+                                  hintText: AppLocalizations.of(context)
+                                      .translate('myusername'),
                                 ),
                               ),
                               tileColor: CustomColors.orangeColor,
@@ -82,8 +84,9 @@ class Profil extends StatelessWidget {
                               title: TextFormField(
                                 controller: _descriptionController,
                                 style: const TextStyle(fontSize: 25),
-                                decoration: const InputDecoration.collapsed(
-                                  hintText: "My description",
+                                decoration: InputDecoration.collapsed(
+                                  hintText: AppLocalizations.of(context)
+                                      .translate('mydescription'),
                                 ),
                                 maxLength: 50,
                               ),
@@ -108,8 +111,9 @@ class Profil extends StatelessWidget {
                                 backgroundColor: MaterialStatePropertyAll(
                                     CustomColors.orangeColor),
                               ),
-                              child: const Text(
-                                "Save Changes",
+                              child: Text(
+                                AppLocalizations.of(context)
+                                    .translate('savechanges'),
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 20),
                               ),
