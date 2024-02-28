@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Görseller
 
-![ScreenShots]("assets/pinksale_all_photo.png")
+![ScreenShots](assets/pinksale_all_photo.png)
 Uygulamanın ana ekranı.
 
 
