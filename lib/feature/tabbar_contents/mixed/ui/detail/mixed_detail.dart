@@ -1,13 +1,12 @@
 import 'package:examplaapplication2024/core/utils/customColors.dart';
 import 'package:examplaapplication2024/feature/product/view/detail/demo_card_page.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_cubit.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_states.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/model/mixed_models.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/cart/add_to_cart.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/cubit/mixed_cubit.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/cubit/mixed_states.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/model/mixed_models.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/cart/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../core/widgets/rating.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 
 class MixedDetailPage extends StatelessWidget {

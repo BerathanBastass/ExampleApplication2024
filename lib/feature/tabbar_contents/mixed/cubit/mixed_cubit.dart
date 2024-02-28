@@ -1,4 +1,4 @@
-import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_states.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/cubit/mixed_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import '../model/mixed_models.dart';

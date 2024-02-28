@@ -1,15 +1,15 @@
-import 'package:examplaapplication2024/feature/tabbar_contents/mixed/model/mixed_models.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/female/model/female_model.dart';
 import 'package:flutter/material.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../favorites/cubit/layot_cubit.dart';
+import '../../../favorites/cubit/layot_cubit.dart';
 
-class ProductItem extends StatelessWidget {
-  final Products product;
+class FemaleCard extends StatelessWidget {
+  final FemaleModel femaleModel;
 
-  ProductItem({required this.product});
+  FemaleCard({required this.femaleModel});
 
   @override
   Widget build(BuildContext context) {
@@ -18,43 +18,34 @@ class ProductItem extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: CustomColors.saltWhite, width: 10),
+        border: Border.all(color: CustomColors.saltWhite, width: 15),
       ),
       child: Align(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              product.image,
+              femaleModel.image,
               height: 50,
-              width: 500,
+              width: 300,
               alignment: Alignment.center,
             ),
             Flexible(
               child: Center(
                 child: Text(
-                  product.title,
-                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
+                  femaleModel.title,
+                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
             Flexible(
               child: Center(
                 child: Text(
-                  '\$${product.price}',
+                  '\$${femaleModel.price}',
                   style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.normal),
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-            IconButton(
-              icon: Icon(
-                cubit.isExist(product) ? Icons.favorite : Icons.favorite,
-                color: CustomColors.orangeColor,
-              ),
-              onPressed: () {
-                cubit.toggleFavorites(product);
-              },
             ),
           ],
         ),

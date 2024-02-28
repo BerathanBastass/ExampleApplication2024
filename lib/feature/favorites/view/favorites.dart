@@ -1,5 +1,5 @@
 import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/detail/mixed_detail.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/detail/mixed_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +17,7 @@ class _FavoritesState extends State<Favorites> {
   Widget build(BuildContext context) {
     final cubit = context.read<FavoritesCubit>();
     final finalList = cubit.favorites;
+
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
 
     return Scaffold(

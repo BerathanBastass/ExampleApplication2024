@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/detail/mixed_detail.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/detail/mixed_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../product/view/demo_page.dart';

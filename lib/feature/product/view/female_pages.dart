@@ -1,4 +1,4 @@
-import 'package:examplaapplication2024/feature/tabbar_contents/mixed/model/mixed_models.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/female/model/female_model.dart';
 import 'package:flutter/material.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../favorites/cubit/layot_cubit.dart';
 
-class ProductItem extends StatelessWidget {
-  final Products product;
+class FemaleItem extends StatelessWidget {
+  final FemaleModel female;
 
-  ProductItem({required this.product});
+  FemaleItem({required this.female});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              product.image,
+              female.image,
               height: 50,
               width: 500,
               alignment: Alignment.center,
@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
             Flexible(
               child: Center(
                 child: Text(
-                  product.title,
+                  female.title,
                   style: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
                 ),
               ),
@@ -41,20 +41,20 @@ class ProductItem extends StatelessWidget {
             Flexible(
               child: Center(
                 child: Text(
-                  '\$${product.price}',
+                  '\$${female.price}',
                   style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.normal),
+                    fontSize: 25,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ),
             ),
             IconButton(
               icon: Icon(
-                cubit.isExist(product) ? Icons.favorite : Icons.favorite,
+                Icons.favorite,
                 color: CustomColors.orangeColor,
               ),
-              onPressed: () {
-                cubit.toggleFavorites(product);
-              },
+              onPressed: () {},
             ),
           ],
         ),

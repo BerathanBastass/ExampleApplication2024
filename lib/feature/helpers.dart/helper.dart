@@ -35,7 +35,6 @@ ThemeData buildThemeData(AppTheme appTheme) {
   return ThemeData(
     platform: TargetPlatform.iOS,
     brightness: appTheme.theme.brightness,
-    backgroundColor: appTheme.theme.backgroundColor,
     scaffoldBackgroundColor: appTheme.theme.scaffoldBackgroundColor,
     primaryColor: appTheme.theme.primaryColor,
     splashColor: appTheme.theme.splashColor,

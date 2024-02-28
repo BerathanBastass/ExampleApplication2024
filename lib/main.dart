@@ -1,12 +1,13 @@
 import 'package:examplaapplication2024/feature/favorites/cubit/layot_cubit.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/cubit/mixed_cubit.dart';
+import 'package:examplaapplication2024/feature/profile/cubit/profile_event.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/electronic/cubit/electornic_cubit.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/female/cubit/female_cubit.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/cubit/mixed_cubit.dart';
 import 'package:examplaapplication2024/feature/users/cubit/users_cubit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:examplaapplication2024/feature/helpers.dart/helper.dart';
-
 import 'package:examplaapplication2024/feature/settings/cubit/change_state.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
@@ -14,7 +15,7 @@ import 'package:examplaapplication2024/feature/favorites/view/favorites.dart';
 import 'package:examplaapplication2024/feature/tabbarr/tabbar.dart';
 import 'package:examplaapplication2024/feature/profile/view/profile.dart';
 import 'package:examplaapplication2024/feature/settings/view/settings.dart';
-import 'package:examplaapplication2024/feature/tabbar/mixed/ui/view/mixed_screen.dart';
+import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/view/mixed_screen.dart';
 import 'feature/auth/sıgn_ın/view/login_screen.dart';
 
 Future<void> main() async {
@@ -46,6 +47,9 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<FavoritesCubit>(create: (context) => FavoritesCubit()),
         BlocProvider<MixedCubit>(create: (context) => MixedCubit()),
         BlocProvider<UsersCubit>(create: (context) => UsersCubit()),
+        BlocProvider<UserProfileCubit>(create: (context) => UserProfileCubit()),
+        BlocProvider<FemaleCubit>(create: (context) => FemaleCubit()),
+        BlocProvider<ElectronicCubit>(create: (context) => ElectronicCubit()),
       ],
       child: BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
         builder: (context, ChangeThemeState themeState) {
@@ -57,7 +61,7 @@ class _MyAppState extends State<MyApp> {
               "/homePage": (context) => const HomePage(),
               "/bottomBar": (context) => const BottomBar(),
               "/favorites": (context) => Favorites(),
-              "/profile": (context) => const Profil(),
+              "/profile": (context) => Profil(),
               "/mixedScreen": (context) => MixedScreen(),
               "/settingsScreen": (context) => Settings(),
             },
@@ -71,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                 : (themeState is ThemeLightState)
                     ? buildThemeData(myThemes[0])
                     : buildThemeData(myThemes[1]),
-            home: const BottomBar(),
+            home: const LoginScreen(),
           );
         },
       ),

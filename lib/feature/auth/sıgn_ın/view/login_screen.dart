@@ -1,17 +1,17 @@
-import 'package:examplaapplication2024/core/splash/splash.dart';
+import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/interaces/login_interface.dart';
+import 'package:examplaapplication2024/feature/bottombar/view/bottombar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/model/user_model.dart';
 import 'package:examplaapplication2024/feature/auth/s%C4%B1gn_%C4%B1n/service/login_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:flutter/material.dart';
 import '../../../../core/images/images.dart';
 import 'package:sign_button/sign_button.dart';
-
 import 'package:examplaapplication2024/core/sized_box/sizedbox.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
-
-import '../interaces/login_interface.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,12 +31,33 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
   void initState() {
     _controller = TabController(length: 2, vsync: this);
     super.initState();
+    _checkUserLoginStatus();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  Future<void> _checkUserLoginStatus() async {
+    final userEmail = await _getUserEmail();
+    if (userEmail != null && userEmail.isNotEmpty) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => BottomBar(),
+        ),
+      );
+    }
+  }
+
+  Future<void> _saveUserCredentials() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', _emailController.text);
+  }
+
+  Future<void> _clearUserCredentials() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('email');
+  }
+
+  Future<String?> _getUserEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('email');
   }
 
   @override
@@ -45,10 +66,6 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
     return Scaffold(
       backgroundColor: _theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        toolbarHeight: 5.0,
-        backgroundColor: _theme.scaffoldBackgroundColor,
-      ),
       body: appBody(height, image),
     );
   }
@@ -68,7 +85,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     tabBar(),
-                    sbxh(),
+                    sbxw(),
                     emailTextField(),
                     sbxh(),
                     passwordTextField(),
@@ -95,25 +112,28 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
       length: 2,
       child: Container(
         child: Column(children: [
-          TabBar(
-            indicatorColor: CustomColors.orangeColor,
-            labelStyle: const TextStyle(color: CustomColors.orangeColor),
-            unselectedLabelColor: Colors.grey,
-            controller: _controller,
-            tabs: const [
-              Tab(
-                child: Text(
-                  'Sıgn In',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          Transform.translate(
+            offset: Offset(0, -70),
+            child: TabBar(
+              indicatorColor: CustomColors.orangeColor,
+              labelStyle: const TextStyle(color: CustomColors.orangeColor),
+              unselectedLabelColor: Colors.grey,
+              controller: _controller,
+              tabs: const [
+                Tab(
+                  child: Text(
+                    'Sıgn In',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
-              ),
-              Tab(
-                child: Text(
-                  'Sıgn Up',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                Tab(
+                  child: Text(
+                    'Sıgn Up',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ]),
       ),
@@ -208,9 +228,10 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
             UserModel? user = await _loginService.login(
                 _emailController.text, _passwordController.text);
             if (user != null) {
+              await _saveUserCredentials();
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => SplashScreens(),
+                  builder: (_) => BottomBar(),
                 ),
               );
             } else {
@@ -226,7 +247,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
         },
         child: const Text(
           'Login',
-          style: TextStyle(color: CustomColors.saltWhite),
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );
@@ -273,11 +294,10 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
 
   topImageContainer(String image) {
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.topCenter,
       child: Image.asset(
         image,
-        color: CustomColors.orangeColor,
-        height: 200,
+        height: 300,
       ),
     );
   }
