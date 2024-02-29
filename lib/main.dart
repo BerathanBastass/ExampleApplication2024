@@ -4,21 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/app_localizations/app_localization.dart';
-import 'core/enums/enums.dart';
+import 'core/app_localizations/enums/enums.dart';
 import 'feature/favorites/cubit/layot_cubit.dart';
 import 'feature/profile/cubit/profile_event.dart';
-import 'feature/tabbar_contents/electronic/cubit/electornic_cubit.dart';
-import 'feature/tabbar_contents/female/cubit/female_cubit.dart';
-import 'feature/tabbar_contents/mixed/cubit/mixed_cubit.dart';
+import 'feature/tabbarr/views/electronic/cubit/electornic_cubit.dart';
+import 'feature/tabbarr/views/female/cubit/female_cubit.dart';
+import 'feature/tabbarr/views/mixed/cubit/mixed_cubit.dart';
 import 'feature/users/cubit/users_cubit.dart';
-import 'feature/helpers.dart/helper.dart';
+import 'core/helpers.dart/helper.dart';
 import 'feature/settings/cubit/change_state.dart';
 import 'feature/settings/cubit/settings_cubit.dart';
 import 'feature/bottombar/view/bottombar.dart';
 import 'feature/favorites/view/favorites.dart';
 import 'feature/tabbarr/tabbar.dart';
 import 'feature/profile/view/profile.dart';
-import 'feature/tabbar_contents/mixed/ui/view/mixed_screen.dart';
+import 'feature/tabbarr/views/mixed/ui/view/mixed_screen.dart';
 import 'feature/auth/sıgn_ın/view/login_screen.dart';
 
 void main() async {

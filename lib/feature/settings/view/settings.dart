@@ -1,54 +1,35 @@
-import 'package:examplaapplication2024/core/utils/customColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../core/app_localizations/app_localization.dart';
-import '../../../core/enums/enums.dart';
+import '../../../core/app_localizations/enums/enums.dart';
 import '../../../core/shared_preferences/shared_pref_helper.dart';
-import '../../helpers.dart/theme_model.dart';
+import '../../../core/utils/customColors.dart';
+import '../../../core/helpers.dart/theme_model.dart';
 import '../cubit/settings_cubit.dart';
 import 'theme_radio.dart';
 
-class Settings extends StatefulWidget {
-  @override
-  State<Settings> createState() => CombinedScreenState();
-}
-
-class CombinedScreenState extends State<Settings> {
-  List<ThemeModel>? _themeModels;
-  int selectedCardIndex = -1;
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration.zero, () {
-      setState(() {
-        _themeModels = <ThemeModel>[
-          ThemeModel(
-            AppLocalizations.of(context).translate('lightmode'),
-            Icons.wb_sunny,
-            false,
-          ),
-          ThemeModel(
-            AppLocalizations.of(context).translate('darkmode'),
-            Icons.tonality_outlined,
-            false,
-          ),
-          ThemeModel(AppLocalizations.of(context).translate('auto'),
-              Icons.brightness_auto, false)
-        ];
-
-        _themeModels![context.read<ChangeThemeCubit>().getTheme()].isSelected =
-            true;
-      });
-    });
-  }
-
+class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _theme = context.read<ChangeThemeCubit>().getAppTheme(context).theme;
+
+    List<ThemeModel> _themeModels = [
+      ThemeModel(
+        AppLocalizations.of(context).translate('lightmode'),
+        Icons.wb_sunny,
+        context.read<ChangeThemeCubit>().getTheme() == 0,
+      ),
+      ThemeModel(
+        AppLocalizations.of(context).translate('darkmode'),
+        Icons.tonality_outlined,
+        context.read<ChangeThemeCubit>().getTheme() == 1,
+      ),
+    ];
+
+    int selectedCardIndex =
+        SharedPreferencesHelper.getData('lang') == 'en' ? 0 : 1;
+
     return Scaffold(
       backgroundColor: _theme.scaffoldBackgroundColor,
       body: Stack(
@@ -79,43 +60,20 @@ class CombinedScreenState extends State<Settings> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                setState(() {
-                                  context
-                                      .read<ChangeThemeCubit>()
-                                      .setThemeMode(0);
-                                  _themeModels![0].isSelected = true;
-                                  _themeModels![1].isSelected = false;
-                                  _themeModels![2].isSelected = false;
-                                });
+                                context
+                                    .read<ChangeThemeCubit>()
+                                    .setThemeMode(0);
                               },
-                              child: ThemeRadio(_themeModels![0]),
+                              child: ThemeRadio(_themeModels[0]),
                             ),
                             GestureDetector(
                               onTap: () {
-                                setState(() {
-                                  context
-                                      .read<ChangeThemeCubit>()
-                                      .setThemeMode(1);
-                                  _themeModels![0].isSelected = false;
-                                  _themeModels![1].isSelected = true;
-                                  _themeModels![2].isSelected = false;
-                                });
+                                context
+                                    .read<ChangeThemeCubit>()
+                                    .setThemeMode(1);
                               },
-                              child: ThemeRadio(_themeModels![1]),
+                              child: ThemeRadio(_themeModels[1]),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  context
-                                      .read<ChangeThemeCubit>()
-                                      .setThemeMode(2);
-                                  _themeModels![0].isSelected = false;
-                                  _themeModels![1].isSelected = false;
-                                  _themeModels![2].isSelected = true;
-                                });
-                              },
-                              child: ThemeRadio(_themeModels![2]),
-                            )
                           ],
                         )
                       : Container(),
@@ -132,18 +90,32 @@ class CombinedScreenState extends State<Settings> {
                   offset: Offset(0, 70),
                   child: SizedBox(
                     child: buildCard(
-                        0,
-                        AppLocalizations.of(context).translate('english'),
-                        FontAwesomeIcons.globe),
+                      0,
+                      AppLocalizations.of(context).translate('english'),
+                      FontAwesomeIcons.globe,
+                      selectedCardIndex == 0,
+                      () {
+                        context
+                            .read<LocalizationCubit>()
+                            .appLanguageFunction(LanguagesTypesEnums.english);
+                      },
+                    ),
                   ),
                 ),
                 const SizedBox(height: 30),
                 Transform.translate(
                   offset: Offset(0, 70),
                   child: buildCard(
-                      1,
-                      AppLocalizations.of(context).translate('turkish'),
-                      FontAwesomeIcons.globe),
+                    1,
+                    AppLocalizations.of(context).translate('turkish'),
+                    FontAwesomeIcons.globe,
+                    selectedCardIndex == 1,
+                    () {
+                      context
+                          .read<LocalizationCubit>()
+                          .appLanguageFunction(LanguagesTypesEnums.turkey);
+                    },
+                  ),
                 ),
               ],
             ),
@@ -153,28 +125,14 @@ class CombinedScreenState extends State<Settings> {
     );
   }
 
-  Widget buildCard(int index, String language, IconData iconData) {
+  Widget buildCard(int index, String language, IconData iconData,
+      bool isSelected, VoidCallback onTap) {
     return Card(
       elevation: 5,
       margin: const EdgeInsets.all(15),
-      color:
-          selectedCardIndex == index ? CustomColors.orangeColor : Colors.white,
+      color: isSelected ? CustomColors.orangeColor : Colors.white,
       child: InkWell(
-        onTap: () {
-          setState(() {
-            selectedCardIndex = index;
-          });
-
-          if (index == 0) {
-            SharedPreferencesHelper.setData('lang', 'en');
-            BlocProvider.of<LocalizationCubit>(context)
-                .appLanguageFunction(LanguagesTypesEnums.english);
-          } else if (index == 1) {
-            SharedPreferencesHelper.setData('lang', 'tr');
-            BlocProvider.of<LocalizationCubit>(context)
-                .appLanguageFunction(LanguagesTypesEnums.turkey);
-          }
-        },
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Row(
@@ -187,6 +145,7 @@ class CombinedScreenState extends State<Settings> {
               Icon(
                 iconData,
                 size: 30,
+                color: CustomColors.saltWhite,
               ),
             ],
           ),

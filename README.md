@@ -2,6 +2,11 @@
 
 Flutter project.
 
+## ScreenShots
+
+![ScreenShots](assets/pinksale_all_photo.png)
+Screens of the application
+
 ## Getting Started
 
 A Flutter starter ecommerce app built with BLOC pattern. It has following features
@@ -11,7 +16,7 @@ A Flutter starter ecommerce app built with BLOC pattern. It has following featur
   - It helps in managing state and make access to data from a central place in your project.
   - Its a state management system for Flutter recommended by Google developers.
 
-  ### Dependencies
+### Dependencies
 
 This project is built with various awesome open sourced libraries
 
@@ -22,10 +27,9 @@ independent using blocs
 
 * [dio](https://pub.dev/packages/dio) - Perfect for api requests
 
-## Görseller
+* [flutter_localization](https://pub.dev/packages/flutter_localization) - Good for language switching
 
-![ScreenShots](assets/pinksale_all_photo.png)
-Uygulamanın Ekranları.
+
 
 
 

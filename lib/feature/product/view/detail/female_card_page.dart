@@ -1,16 +1,13 @@
-import 'package:examplaapplication2024/feature/tabbar_contents/female/model/female_model.dart';
+import 'package:examplaapplication2024/feature/tabbarr/views/female/model/female_model.dart';
 import 'package:flutter/material.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../favorites/cubit/layot_cubit.dart';
 
 class FemaleCard extends StatelessWidget {
   final FemaleModel femaleModel;
-
   FemaleCard({required this.femaleModel});
-
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<FavoritesCubit>();
