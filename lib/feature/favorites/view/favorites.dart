@@ -25,7 +25,7 @@ class _FavoritesState extends State<Favorites> {
         backgroundColor: _theme.scaffoldBackgroundColor,
         title: Text(
           AppLocalizations.of(context).translate('favorites'),
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: 35),
         ),
       ),
       body: Column(
