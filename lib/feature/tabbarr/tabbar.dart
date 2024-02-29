@@ -1,8 +1,8 @@
 import 'package:examplaapplication2024/core/app_localizations/app_localization.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/electronic/ui/view/electronic_screen.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/female/ui/view/female_screen.dart';
-import 'package:examplaapplication2024/feature/tabbar_contents/mixed/ui/view/mixed_screen.dart';
+import 'package:examplaapplication2024/feature/tabbarr/views/electronic/ui/view/electronic_screen.dart';
+import 'package:examplaapplication2024/feature/tabbarr/views/female/ui/view/female_screen.dart';
+import 'package:examplaapplication2024/feature/tabbarr/views/mixed/ui/view/mixed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:examplaapplication2024/feature/helpers.dart/theme_model.dart';
+import 'package:examplaapplication2024/core/helpers.dart/theme_model.dart';
 
 class ThemeRadio extends StatelessWidget {
   const ThemeRadio(this._themeModel, {Key? key}) : super(key: key);
-
   final ThemeModel _themeModel;
 
   @override

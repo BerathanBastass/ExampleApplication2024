@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesHelper {
   static SharedPreferences? sharedPreferences;
 
-  // MARK: - Set Data To SharedPreferences.
   static setData(String key, value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     debugPrint(
@@ -31,7 +30,6 @@ class SharedPreferencesHelper {
     }
   }
 
-  // MARK: - Get Data From SharedPreferences.
   static getData(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     debugPrint('SharedPreferencesHelper: getData with key: $key');

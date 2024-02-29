@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/change_state.dart';
 import 'package:examplaapplication2024/main.dart';
-import 'package:examplaapplication2024/feature/helpers.dart/helper.dart';
-import 'package:examplaapplication2024/core/enums/enums.dart';
+import 'package:examplaapplication2024/core/helpers.dart/helper.dart';
+import 'package:examplaapplication2024/core/app_localizations/enums/enums.dart';
 import 'package:examplaapplication2024/core/shared_preferences/shared_pref_helper.dart';
 
 class ChangeThemeCubit extends Cubit<ChangeThemeState> {
@@ -68,7 +68,7 @@ class LocalizationCubit extends Cubit<LocalizationState> {
         }
         break;
       case LanguagesTypesEnums.turkey:
-        SharedPreferencesHelper.setData('lang', 'tr');
+        SharedPreferencesHelper.setData('lang', '');
         emit(ChangeAppLanguage(languageCode: 'tr'));
         break;
       case LanguagesTypesEnums.english:

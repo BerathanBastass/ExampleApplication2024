@@ -31,7 +31,6 @@ class _MyHomePageState extends State<BottomBar> {
     super.dispose();
   }
 
-  /// widget list
   final List<Widget> bottomBarPages = [
     Profil(),
     const Favorites(),

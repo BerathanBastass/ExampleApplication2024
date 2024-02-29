@@ -1,14 +1,12 @@
-import 'package:examplaapplication2024/feature/tabbar_contents/mixed/model/mixed_models.dart';
+import 'package:examplaapplication2024/feature/tabbarr/views/mixed/model/mixed_models.dart';
 import 'package:flutter/material.dart';
 import 'package:examplaapplication2024/core/utils/customcolors.dart';
 import 'package:examplaapplication2024/feature/settings/cubit/settings_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../favorites/cubit/layot_cubit.dart';
 
 class ShotCard extends StatelessWidget {
   final Products product;
-
   ShotCard({required this.product});
 
   @override
