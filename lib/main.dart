@@ -26,7 +26,7 @@ void main() async {
   MyApp.mainSharedPreferences = await SharedPreferences.getInstance();
   final themeIndex = MyApp.mainSharedPreferences!.getInt('selectedThemeIndex');
   if (themeIndex == null) {
-    await MyApp.mainSharedPreferences!.setInt('selectedThemeIndex', 2);
+    await MyApp.mainSharedPreferences!.setInt('selectedThemeIndex', 1);
   }
 
   runApp(const MyApp());
