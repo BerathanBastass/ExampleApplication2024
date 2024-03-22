@@ -297,7 +297,7 @@ class _LoginScreen extends State<LoginScreen> with TickerProviderStateMixin {
       alignment: Alignment.topCenter,
       child: Image.asset(
         image,
-        height: 300,
+        height: 200,
       ),
     );
   }
