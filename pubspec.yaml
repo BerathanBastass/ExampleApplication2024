@@ -76,6 +76,7 @@ flutter:
   assets:
      - assets/translations/
      -  "assets/pinksale.png"
+     -  "assets/black_logo.png"
      -  "assets/pinksale_all_photo.png"
      
 
